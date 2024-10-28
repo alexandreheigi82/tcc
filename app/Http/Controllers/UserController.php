@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -32,18 +33,20 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $created = $this->user->create([
-            'nome' => $request->input('nome'),
-            'sobrenome' => $request->input('sobrenome'),
-            'email' => $request->input('email'),
-            'senha' => password_hash($request->input('senha'), PASSWORD_DEFAULT),
-        ]);
-        if ($created){
-            return redirect()->back()->with('message', 'Criado com sucesso!');
-        }
+{
+    $created = $this->user->create([
+        'nome' => $request->input('nome'),
+        'sobrenome' => $request->input('sobrenome'),
+        'email' => $request->input('email'),
+        'senha' => Hash::make($request->input('senha')),  // Usando 'senha' para manter consistência com o DB
+    ]);
 
-        return redirect()->back()->with('message', 'Erro!');
+    if ($created){
+        return redirect()->back()->with('message', 'Criado com sucesso!');
+    }
+
+    return redirect()->back()->with('message', 'Erro!');
+
     }
 
     /**
