@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PackageController extends Controller
 {
+    public function index()
+    {
+        $packages = Package::all();
+        return view('packages.index', ['packages' => $packages]);
+    }
+
     public function create()
     {
         return view('packages.create');
@@ -14,6 +21,8 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+//teste de gravacao
+        Log::info('Entrou no método store do PackageController');
         $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
@@ -38,4 +47,3 @@ class PackageController extends Controller
         return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
     }
 }
-
