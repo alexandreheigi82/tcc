@@ -26,4 +26,9 @@ Route::post('/password/reset', [AuthController::class, 'reset'])->name('password
 Route::get('/packages/create', [PackageController::class, 'create'])->name('packages.create');
 Route::post('/packages', [PackageController::class, 'store'])->name('packages.store');
 Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
+Route::get('/packages/{package}', [PackageController::class, 'show'])->name('packages.show');
+Route::get('/packages/{package}/edit', [PackageController::class, 'edit'])->name('packages.edit');
+Route::put('/packages/{package}', [PackageController::class, 'update'])->name('packages.update');
+Route::delete('/packages/{package}', [PackageController::class, 'destroy'])->name('packages.destroy');
+
 

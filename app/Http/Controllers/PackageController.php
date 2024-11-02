@@ -46,4 +46,48 @@ class PackageController extends Controller
 
         return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
     }
+
+    public function show(Package $package)
+    {
+        return view('packages.show', ['package' => $package]);
+    }
+
+    public function edit(Package $package)
+    {
+        return view('packages.edit', ['package' => $package]);
+    }
+
+    public function update(Request $request, Package $package)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'valor' => 'required|numeric',
+            'vagas' => 'required|integer',
+            'imagem' => 'nullable|image|max:2048',
+        ]);
+
+        $package->titulo = $request->input('titulo');
+        $package->descricao = $request->input('descricao');
+        $package->valor = $request->input('valor');
+        $package->vagas = $request->input('vagas');
+
+        if ($request->hasFile('imagem')) {
+            $path = $request->file('imagem')->store('imagens', 'public');
+            $package->imagem = $path;
+        }
+
+        $package->save();
+
+        return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
+    }
+
+    public function destroy(Package $package)
+    {
+        $package->delete();
+
+        return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
+    }
+
+
 }

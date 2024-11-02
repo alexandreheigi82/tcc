@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log; // Importando Log
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -18,29 +18,28 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-{
-    Log::info('Tentativa de login com o email:', ['email' => $request->email]);
+    {
+        Log::info('Tentativa de login com o email:', ['email' => $request->email]);
 
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
-    ]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
+        ]);
 
-    $user = User::where('email', $request->email)->first();
-    Log::info('Usuário encontrado:', ['user' => $user]);
+        $user = User::where('email', $request->email)->first();
+        Log::info('Usuário encontrado:', ['user' => $user]);
 
-    if ($user && Hash::check($request->password, $user->senha)) {  // Verificando 'senha' do DB
-        Log::info('Senha correta, autenticando usuário');
-        Auth::login($user);
-        Log::info('Usuário autenticado, redirecionando para a home');
-        return redirect()->route('home');
-    }
+        if ($user && Hash::check($request->password, $user->senha)) {
+            Log::info('Senha correta, autenticando usuário');
+            Auth::login($user);
+            Log::info('Usuário autenticado, redirecionando para a home');
+            return redirect()->route('home');
+        }
 
-    Log::warning('Credenciais não correspondem aos registros');
-    throw ValidationException::withMessages([
-        'email' => [trans('auth.failed')],
-    ]);
-
+        Log::warning('Credenciais não correspondem aos registros');
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
     }
 
     public function logout(Request $request)
@@ -52,9 +51,9 @@ class AuthController extends Controller
         return redirect()->route('login.form');
     }
 
-    public function showResetForm()
+    public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.email');
+        return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
     }
 
     public function sendResetLinkEmail(Request $request)

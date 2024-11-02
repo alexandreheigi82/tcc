@@ -10,13 +10,15 @@
     <ul>
         @foreach ($packages as $package)
             <li>
-                <h3>{{ $package->title }}</h3>
-                <p>{{ $package->description }}</p>
-                <p>Valor: {{ $package->price }}</p>
-                <p>Vagas: {{ $package->slots }}</p>
-                @if ($package->image)
-                    <img src="{{ asset('storage/' . $package->image) }}" alt="{{ $package->title }}" width="200">
+                <h3>{{ $package->titulo }}</h3>
+                <p>{{ $package->descricao }}</p>
+                <p>Valor: {{ $package->valor }}</p>
+                <p>Vagas: {{ $package->vagas }}</p>
+                @if ($package->imagem)
+                    <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" width="200">
                 @endif
+                <br>
+                <a href="{{ route('packages.show', ['package' => $package->id]) }}">Ver Detalhes</a>
             </li>
         @endforeach
     </ul>

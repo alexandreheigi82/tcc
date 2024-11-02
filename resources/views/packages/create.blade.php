@@ -13,31 +13,26 @@
         </div>
     @endif
 
-
-
-
-
-
     <form action="{{ route('packages.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
-            <label for="title">Título:</label>
+            <label for="titulo">Título:</label>
             <input type="text" id="titulo" name="titulo" required>
         </div>
         <div>
-            <label for="description">Descrição:</label>
+            <label for="descricao">Descrição:</label>
             <textarea id="descricao" name="descricao" required></textarea>
         </div>
         <div>
-            <label for="price">Valor:</label>
+            <label for="valor">Valor:</label>
             <input type="text" id="valor" name="valor" required>
         </div>
         <div>
-            <label for="slots">Vagas:</label>
+            <label for="vagas">Vagas:</label>
             <input type="number" id="vagas" name="vagas" required>
         </div>
         <div>
-            <label for="image">Imagem:</label>
+            <label for="imagem">Imagem:</label>
             <input type="file" id="imagem" name="imagem">
         </div>
         <button type="submit">Salvar</button>
