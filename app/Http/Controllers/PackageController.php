@@ -29,6 +29,7 @@ class PackageController extends Controller
             'valor' => 'required|numeric',
             'vagas' => 'required|integer',
             'imagem' => 'nullable|image|max:2048',
+            'link' => 'nullable|url'
         ]);
 
         $package = new Package();
@@ -41,6 +42,8 @@ class PackageController extends Controller
             $path = $request->file('imagem')->store('imagens', 'public');
             $package->imagem = $path;
         }
+
+        $package->link = $request->input('link');
 
         $package->save();
 
@@ -65,6 +68,7 @@ class PackageController extends Controller
             'valor' => 'required|numeric',
             'vagas' => 'required|integer',
             'imagem' => 'nullable|image|max:2048',
+            'link' => 'nullable|url',
         ]);
 
         $package->titulo = $request->input('titulo');
@@ -77,6 +81,8 @@ class PackageController extends Controller
             $package->imagem = $path;
         }
 
+        $package->link = $request->input('link');
+
         $package->save();
 
         return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
@@ -88,6 +94,7 @@ class PackageController extends Controller
 
         return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
     }
+
 
 
 }

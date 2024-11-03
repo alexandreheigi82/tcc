@@ -9,6 +9,7 @@
         </form>
         <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
         <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
+        <a href="{{ route('clients.create') }}">Cadastrar Novo Cliente</a>
     @else
         <h2>Bem-vindo, visitante</h2>
         <a href="{{ route('login.form') }}">Login</a>

@@ -27,5 +27,10 @@
         </div>
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location='{{ route('packages.index') }}'">Cancelar</button>
+
+        <div>
+            <label for="link">Link:</label>
+            <input type="link" id="link" name="link" value="{{ $package->link }}" required>
+        </div>
     </form>
 @endsection

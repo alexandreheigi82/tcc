@@ -9,6 +9,7 @@
     @if ($package->imagem)
         <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" width="200">
     @endif
+    <a href="{{ $package->link }}">Link: Fale conosco </a>
     <br>
     <a href="{{ route('packages.index') }}">Voltar</a>
     <a href="{{ route('packages.edit', ['package' => $package->id]) }}">Editar</a>

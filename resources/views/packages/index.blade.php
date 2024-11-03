@@ -19,6 +19,8 @@
                 @endif
                 <br>
                 <a href="{{ route('packages.show', ['package' => $package->id]) }}">Ver Detalhes</a>
+                <br>
+                <a href="{{ $package->link }}" target="_blank">Fale conosco</a>
             </li>
         @endforeach
     </ul>

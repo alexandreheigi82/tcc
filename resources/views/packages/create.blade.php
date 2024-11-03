@@ -35,6 +35,10 @@
             <label for="imagem">Imagem:</label>
             <input type="file" id="imagem" name="imagem">
         </div>
+        <div>
+            <label for="link">Link:</label>
+            <input type="url" id="link" name="link">
+        </div>
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location='{{ route('home') }}'">Cancelar</button>
     </form>

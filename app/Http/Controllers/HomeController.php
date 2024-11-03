@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Package;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        return view('home', ['user' => $user]);
+        $packages = Package::all();
+        return view('home', compact('packages'));
     }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+
 }
