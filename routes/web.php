@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
@@ -32,9 +33,12 @@ Route::get('/packages/{package}/edit', [PackageController::class, 'edit'])->name
 Route::put('/packages/{package}', [PackageController::class, 'update'])->name('packages.update');
 Route::delete('/packages/{package}', [PackageController::class, 'destroy'])->name('packages.destroy');
 
-
 Route::resource('clients', ClientController::class);
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
+    Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
+    Route::get('/sales/{sale}', [SaleController::class, 'show'])->name('sales.show');
+    // Outras rotas protegidas
+}); // Certifique-se de fechar o grupo de middleware aqui.
