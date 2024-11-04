@@ -19,6 +19,7 @@ class Package extends Model
         'valor',
         'vagas',
         'imagem',
+        'link',
     ];
 }
 

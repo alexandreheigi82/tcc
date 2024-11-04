@@ -9,10 +9,29 @@
 </head>
 <body>
 
+<nav>
+    <ul>
+        <li><a href="<?php echo e(route('home')); ?>">Home</a></li>
+        <li><a href="<?php echo e(route('dashboard')); ?>">Painel de Controle</a></li>
+        <?php if(Auth::check()): ?>
+            <li>
+                <form action="<?php echo e(route('logout')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        <?php else: ?>
+            <li><a href="<?php echo e(route('login.form')); ?>">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</nav>
+
 <div class="container">
     <?php echo $__env->yieldContent('content'); ?>
 
 </div>
+
+
 
 </body>
 </html>

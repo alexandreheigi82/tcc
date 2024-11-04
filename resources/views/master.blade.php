@@ -9,10 +9,29 @@
 </head>
 <body>
 
+<nav>
+    <ul>
+        <li><a href="{{ route('home') }}">Home</a></li>
+        <li><a href="{{ route('dashboard') }}">Painel de Controle</a></li>
+        @if (Auth::check())
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        @else
+            <li><a href="{{ route('login.form') }}">Login</a></li>
+        @endif
+    </ul>
+</nav>
+
 <div class="container">
     @yield('content')
 
 </div>
+
+
 
 </body>
 </html>
