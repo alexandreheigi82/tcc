@@ -8877,3 +8877,8 @@ Did you mean one of these?
 [2024-11-03 23:42:32] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$v9CaHurRiVPiZGpRr5S5weTo5DEXTItkgGcPj296vVWeB8hGvyVVa","administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-03T22:47:34.000000Z"}}} 
 [2024-11-03 23:42:32] local.INFO: Senha correta, autenticando usuário  
 [2024-11-03 23:42:32] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-04 22:22:17] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-04 22:22:17] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$v9CaHurRiVPiZGpRr5S5weTo5DEXTItkgGcPj296vVWeB8hGvyVVa","administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-03T22:47:34.000000Z"}}} 
+[2024-11-04 22:22:17] local.INFO: Senha correta, autenticando usuário  
+[2024-11-04 22:22:17] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-04 22:36:01] local.INFO: Entrou no método store do PackageController  
