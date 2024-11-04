@@ -23,6 +23,7 @@ class AuthController extends Controller
 
     $request->validate([
         'email' => 'required|email',
+        // Validação feita na hora de cadastrar a senha, estão não precisa validar no login, somente localizar no Banco
         'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
     ]);
 

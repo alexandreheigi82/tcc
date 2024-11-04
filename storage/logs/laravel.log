@@ -4694,3 +4694,22 @@ Did you mean one of these?
 [2024-11-01 00:08:24] local.INFO: Entrou no método store do PackageController  
 [2024-11-01 00:09:45] local.INFO: Entrou no método store do PackageController  
 [2024-11-01 00:14:57] local.INFO: Entrou no método store do PackageController  
+[2024-11-02 16:18:08] local.ERROR: include(C:\Users\User\Documents\tcc2\vendor\composer/../symfony/var-dumper/Cloner/AbstractCloner.php): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): include(C:\\Users\\User\\Documents\\tcc2\\vendor\\composer/../symfony/var-dumper/Cloner/AbstractCloner.php): Failed to open stream: No such file or directory at C:\\Users\\User\\Documents\\tcc2\\vendor\\composer\\ClassLoader.php:576)
+[stacktrace]
+#0 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'include(C:\\\\User...', 'C:\\\\Users\\\\User\\\\D...', 576)
+#1 C:\\Users\\User\\Documents\\tcc2\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'include(C:\\\\User...', 'C:\\\\Users\\\\User\\\\D...', 576)
+#2 C:\\Users\\User\\Documents\\tcc2\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\Users\\\\User\\\\D...')
+#3 C:\\Users\\User\\Documents\\tcc2\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\Users\\\\User\\\\D...')
+#4 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Providers\\FoundationServiceProvider.php(117): Composer\\Autoload\\ClassLoader->loadClass('Symfony\\\\Compone...')
+#5 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Providers\\FoundationServiceProvider.php(89): Illuminate\\Foundation\\Providers\\FoundationServiceProvider->registerDumper()
+#6 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(868): Illuminate\\Foundation\\Providers\\FoundationServiceProvider->register()
+#7 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(Illuminate\\Foundation\\Providers\\FoundationServiceProvider))
+#8 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(843): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#9 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(37): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#10 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(316): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(473): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(195): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 C:\\Users\\User\\Documents\\tcc2\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1203): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 C:\\Users\\User\\Documents\\tcc2\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#15 {main}
+"} 
