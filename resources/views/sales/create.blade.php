@@ -28,7 +28,7 @@
             <select name="package_id" id="package_id" required>
                 @foreach ($packages as $package)
                     <option value="{{ $package->id }}" data-valor="{{ $package->valor }}" data-descricao="{{ $package->descricao }}" data-vagas="{{ $package->vagas }}">
-                        {{ $package->descricao }} - R$ {{ $package->valor }}
+                        {{ $package->titulo }} - R$ {{ $package->valor }}
                     </option>
                 @endforeach
             </select>

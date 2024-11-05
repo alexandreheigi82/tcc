@@ -21,10 +21,12 @@ class AuthController extends Controller
     {
         Log::info('Tentativa de login com o email:', ['email' => $request->email]);
 
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
-        ]);
+    $request->validate([
+        'email' => 'required|email',
+        // Validação feita na hora de cadastrar a senha, estão não precisa validar no login, somente localizar no Banco
+        'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
+    ]);
+
 
         $user = User::where('email', $request->email)->first();
         Log::info('Usuário encontrado:', ['user' => $user]);
