@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
@@ -21,12 +20,10 @@ class AuthController extends Controller
     {
         Log::info('Tentativa de login com o email:', ['email' => $request->email]);
 
-    $request->validate([
-        'email' => 'required|email',
-        // Validação feita na hora de cadastrar a senha, estão não precisa validar no login, somente localizar no Banco
-        'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
-    ]);
-
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/'
+        ]);
 
         $user = User::where('email', $request->email)->first();
         Log::info('Usuário encontrado:', ['user' => $user]);
@@ -51,49 +48,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login.form');
-    }
-
-    public function showResetForm(Request $request, $token = null)
-    {
-        return view('auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
-    }
-
-    public function sendResetLinkEmail(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-
-        $user = User::where('email', $request->input('email'))->first();
-
-        if (!$user) {
-            return back()->withErrors(['email' => trans('auth.user')]);
-        }
-
-        // Envio do email (simulação)
-        Mail::raw('Clique aqui para redefinir sua senha: [link]', function ($message) use ($request) {
-            $message->to($request->input('email'))
-                    ->subject('Redefinição de senha');
-        });
-
-        return back()->with('status', trans('passwords.sent'));
-    }
-
-    public function reset(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:8|confirmed|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#]/',
-            'token' => 'required'
-        ]);
-
-        $user = User::where('email', $request->input('email'))->first();
-
-        if (!$user) {
-            return back()->withErrors(['email' => trans('auth.user')]);
-        }
-
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
-
-        return redirect()->route('login')->with('status', trans('passwords.reset'));
     }
 }

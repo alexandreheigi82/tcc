@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>Redefinir Senha</h2>
-    <form action="{{ route('password.update') }}" method="POST">
+    <form action="{{ route('password.update') }}" method="POST" onsubmit="return validatePassword()">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         <div>
@@ -19,4 +19,17 @@
         </div>
         <button type="submit">Redefinir Senha</button>
     </form>
+
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("password_confirmation").value;
+
+            if (password !== confirmPassword) {
+                alert("As senhas não coincidem. Por favor, tente novamente.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 @endsection
