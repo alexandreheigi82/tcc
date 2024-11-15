@@ -10,9 +10,10 @@ class PackageController extends Controller
 {
     public function index()
     {
-        $packages = Package::all();
+        $packages = Package::where('situacao', true)->get(); // Apenas pacotes ativos
         return view('packages.index', ['packages' => $packages]);
     }
+
 
     public function create()
     {
@@ -20,40 +21,50 @@ class PackageController extends Controller
     }
 
     public function store(Request $request)
-    {
-//teste de gravacao
-        Log::info('Entrou no método store do PackageController');
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string',
-            'valor' => 'required|numeric',
-            'vagas' => 'required|integer',
-            'imagem' => 'nullable|image|max:2048',
-            'link' => 'nullable|url'
-        ]);
+{
+    Log::info('Entrou no método store do PackageController');
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'descricao' => 'required|string',
+        'valor' => 'required|numeric',
+        'vagas' => 'required|integer',
+        'imagem' => 'nullable|image|max:2048',
+        'link' => 'nullable|url',
+        'categoria' => 'required|string',
+        'tipo' => 'required|string',
+        'situacao' => 'boolean',
+    ]);
 
-        $package = new Package();
-        $package->titulo = $request->input('titulo');
-        $package->descricao = $request->input('descricao');
-        $package->valor = $request->input('valor');
-        $package->vagas = $request->input('vagas');
+    $package = new Package();
+    $package->titulo = $request->input('titulo');
+    $package->descricao = $request->input('descricao');
+    $package->valor = $request->input('valor');
+    $package->vagas = $request->input('vagas');
 
-        if ($request->hasFile('imagem')) {
-            $path = $request->file('imagem')->store('imagens', 'public');
-            $package->imagem = $path;
-        }
-
-        $package->link = $request->input('link');
-
-        $package->save();
-
-        return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
+    if ($request->hasFile('imagem')) {
+        $path = $request->file('imagem')->store('imagens', 'public');
+        $package->imagem = $path;
     }
 
-    public function show(Package $package)
+    $package->link = $request->input('link');
+    $package->categoria = $request->input('categoria');
+    $package->tipo = $request->input('tipo');
+    $package->situacao = $request->has('situacao') ? true : false;
+
+    $package->save();
+
+    return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
+}
+
+
+
+
+    public function show($id)
     {
+        $package = Package::withTrashed()->findOrFail($id);
         return view('packages.show', ['package' => $package]);
     }
+
 
     public function edit(Package $package)
     {
@@ -61,39 +72,61 @@ class PackageController extends Controller
     }
 
     public function update(Request $request, Package $package)
-    {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string',
-            'valor' => 'required|numeric',
-            'vagas' => 'required|integer',
-            'imagem' => 'nullable|image|max:2048',
-            'link' => 'nullable|url',
-        ]);
+{
+    Log::info('Iniciando atualização do pacote');
+    Log::info('Valor de situacao recebido: ' . $request->input('situacao'));
 
-        $package->titulo = $request->input('titulo');
-        $package->descricao = $request->input('descricao');
-        $package->valor = $request->input('valor');
-        $package->vagas = $request->input('vagas');
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'descricao' => 'required|string',
+        'valor' => 'required|numeric',
+        'vagas' => 'required|integer',
+        'imagem' => 'nullable|image|max:2048',
+        'link' => 'nullable|url',
+        'categoria' => 'required|string',
+        'tipo' => 'required|string',
+        'situacao' => 'nullable|string',
+    ]);
 
-        if ($request->hasFile('imagem')) {
-            $path = $request->file('imagem')->store('imagens', 'public');
-            $package->imagem = $path;
-        }
+    $package->titulo = $request->input('titulo');
+    $package->descricao = $request->input('descricao');
+    $package->valor = $request->input('valor');
+    $package->vagas = $request->input('vagas');
 
-        $package->link = $request->input('link');
-
-        $package->save();
-
-        return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
+    if ($request->hasFile('imagem')) {
+        $path = $request->file('imagem')->store('imagens', 'public');
+        $package->imagem = $path;
     }
+
+    $package->link = $request->input('link');
+    $package->categoria = $request->input('categoria');
+    $package->tipo = $request->input('tipo');
+    $package->situacao = $request->input('situacao') === 'on' ? true : false;
+
+    Log::info('Valor de situacao após processamento: ' . $package->situacao);
+
+    $package->save();
+
+    return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
+}
+
 
     public function destroy(Package $package)
     {
-        $package->delete();
+        $package->situacao = false;
+        $package->save();
 
         return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
     }
+
+    public function inactive()
+    {
+        $packages = Package::where('situacao', 0)->get(); // Apenas pacotes inativos
+        return view('packages.inactive', ['packages' => $packages]);
+    }
+
+
+
 
 
 

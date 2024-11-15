@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Package extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    // Defina o nome da tabela, se não for a convenção padrão
     protected $table = 'packages';
 
-    // Campos permitidos para mass assignment
     protected $fillable = [
         'titulo',
         'descricao',
@@ -20,7 +19,10 @@ class Package extends Model
         'vagas',
         'imagem',
         'link',
+        'categoria',
+        'tipo',
+        'situacao',
     ];
+
+    protected $dates = ['deleted_at'];
 }
-
-

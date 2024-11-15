@@ -11,9 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $packages = Package::all();
-        return view('home', compact('packages'));
+        $packages = Package::where('situacao', true)->get(); // Apenas pacotes ativos
+        return view('home', ['packages' => $packages]);
     }
+
 
     public function dashboard()
     {

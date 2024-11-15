@@ -38,7 +38,7 @@ class UserController extends Controller
         'nome' => $request->input('nome'),
         'sobrenome' => $request->input('sobrenome'),
         'email' => $request->input('email'),
-        'senha' => Hash::make($request->input('senha')),  // Usando 'senha' para manter consistência com o DB
+        'senha' => Hash::make($request->input('senha')),
     ]);
 
     if ($created){

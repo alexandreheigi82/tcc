@@ -1,4 +1,5 @@
 <?php
+//require __DIR__.'/test.php';
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -10,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
+// Rota de depuração
+Route::get('/debug', function () {
+    return 'Rota de depuração funcionando';
+});
 
 // Rota pública
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -38,13 +43,17 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     // Rotas de Pacotes de Turismo
+    Route::get('/packages/inactive', [PackageController::class, 'inactive'])->name('packages.inactive');
+    Route::put('/packages/{package}', [PackageController::class, 'update'])->name('packages.update');
     Route::get('/packages/create', [PackageController::class, 'create'])->name('packages.create');
     Route::post('/packages', [PackageController::class, 'store'])->name('packages.store');
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/packages/{package}', [PackageController::class, 'show'])->name('packages.show');
     Route::get('/packages/{package}/edit', [PackageController::class, 'edit'])->name('packages.edit');
-    Route::put('/packages/{package}', [PackageController::class, 'update'])->name('packages.update');
     Route::delete('/packages/{package}', [PackageController::class, 'destroy'])->name('packages.destroy');
+
+    //Route::get('/packages/inactive', [PackageController::class, 'inactive'])->name('packages.inactive');
+    //Route::get('/packages/inactive', function () { return 'Pacotes desativados - Teste';});
 
     // Rotas de Clientes
     Route::resource('clients', ClientController::class);

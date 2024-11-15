@@ -25,12 +25,36 @@
             <label for="imagem">Imagem:</label>
             <input type="file" id="imagem" name="imagem">
         </div>
-        <button type="submit">Salvar</button>
-        <button type="button" onclick="window.location='{{ route('packages.index') }}'">Cancelar</button>
-
         <div>
             <label for="link">Link:</label>
-            <input type="link" id="link" name="link" value="{{ $package->link }}" required>
+            <input type="url" id="link" name="link" value="{{ $package->link }}">
         </div>
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="Passagens" {{ $package->categoria == 'Passagens' ? 'selected' : '' }}>Passagens</option>
+                <option value="Hotéis" {{ $package->categoria == 'Hotéis' ? 'selected' : '' }}>Hotéis</option>
+                <option value="Pacotes" {{ $package->categoria == 'Pacotes' ? 'selected' : '' }}>Pacotes</option>
+                <option value="Cruzeiros" {{ $package->categoria == 'Cruzeiros' ? 'selected' : '' }}>Cruzeiros</option>
+            </select>
+        </div>
+        <div>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="Tranquilo" {{ $package->tipo == 'Tranquilo' ? 'selected' : '' }}>Tranquilo</option>
+                <option value="Urbano" {{ $package->tipo == 'Urbano' ? 'selected' : '' }}>Urbano</option>
+                <option value="Religioso" {{ $package->tipo == 'Religioso' ? 'selected' : '' }}>Religioso</option>
+                <option value="Ecoturismo" {{ $package->tipo == 'Ecoturismo' ? 'selected' : '' }}>Ecoturismo</option>
+                <option value="Internacional" {{ $package->tipo == 'Internacional' ? 'selected' : '' }}>Internacional</option>
+                <option value="Gastronômico" {{ $package->tipo == 'Gastronômico' ? 'selected' : '' }}>Gastronômico</option>
+                <option value="Esportivo" {{ $package->tipo == 'Esportivo' ? 'selected' : '' }}>Esportivo</option>
+            </select>
+        </div>
+        <div>
+            <label for="situacao">Ativo:</label>
+            <input type="checkbox" id="situacao" name="situacao" {{ $package->situacao ? 'checked' : '' }}>
+        </div>
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="window.location='{{ route('packages.index') }}'">Cancelar</button>
     </form>
 @endsection
