@@ -14154,3 +14154,15 @@ Did you mean one of these?
 #52 D:\\2024.2sem\\tcc\\tcc\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('D:\\\\2024.2sem\\\\tc...')
 #53 {main}
 "} 
+[2024-11-16 20:44:19] local.INFO: Iniciando atualização do pacote  
+[2024-11-16 20:44:19] local.INFO: Valor de situacao recebido: on  
+[2024-11-16 20:44:19] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-16 20:49:38] local.INFO: Iniciando atualização do pacote  
+[2024-11-16 20:49:38] local.INFO: Valor de situacao recebido: on  
+[2024-11-16 20:49:38] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-16 20:49:43] local.INFO: Iniciando atualização do pacote  
+[2024-11-16 20:49:43] local.INFO: Valor de situacao recebido: on  
+[2024-11-16 20:49:43] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-16 21:03:55] local.INFO: Iniciando atualização do pacote  
+[2024-11-16 21:03:55] local.INFO: Valor de situacao recebido: on  
+[2024-11-16 21:03:55] local.INFO: Valor de situacao após processamento: 1  
