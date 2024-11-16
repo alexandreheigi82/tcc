@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     //Route::get('/packages/inactive', function () { return 'Pacotes desativados - Teste';});
 
     // Rotas de Clientes
+    Route::get('/clients/search', [ClientController::class, 'search'])->name('clients.search');
     Route::resource('clients', ClientController::class)->middleware('auth');
 
 

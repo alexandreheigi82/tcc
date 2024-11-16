@@ -19,6 +19,13 @@ class ClientController extends Controller
         return view('clients.create');
     }
 
+    public function search(Request $request)
+    {
+        $term = $request->input('term');
+        $clients = Client::where('nome', 'LIKE', '%' . $term . '%')->get();
+        return response()->json($clients);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
