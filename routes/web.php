@@ -56,7 +56,8 @@ Route::middleware(['auth'])->group(function () {
     //Route::get('/packages/inactive', function () { return 'Pacotes desativados - Teste';});
 
     // Rotas de Clientes
-    Route::resource('clients', ClientController::class);
+    Route::resource('clients', ClientController::class)->middleware('auth');
+
 
     // Rotas de Vendas
     Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');

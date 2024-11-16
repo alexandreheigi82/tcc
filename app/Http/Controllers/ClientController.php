@@ -94,7 +94,13 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        Client::findOrFail($id)->delete();
-        return redirect()->route('clients.index')->with('success', 'Cliente removido com sucesso!');
+        $client = Client::findOrFail($id);
+        if ($client->sales()->exists()) {
+            $client->update(['situacao' => 0]);
+            return redirect()->route('clients.index')->with('success', 'Cliente inativado com sucesso!');
+        } else {
+            $client->delete();
+            return redirect()->route('clients.index')->with('success', 'Cliente removido com sucesso!');
+        }
     }
 }

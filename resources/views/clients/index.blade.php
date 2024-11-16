@@ -23,8 +23,13 @@
                     Cidade: {{ $client->cidade }}<br>
                     Estado: {{ $client->estado }}<br>
                     Status: {{ $client->situacao ? 'Ativo' : 'Inativo' }}<br>
-                    @auth
+                    @auth <!-- Verifica se o usuário está autenticado -->
                         <a href="{{ route('clients.edit', $client->id) }}">Editar</a>
+                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Excluir</button>
+                        </form>
                     @endauth
                 </li>
             @endforeach
