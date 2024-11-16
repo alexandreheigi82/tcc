@@ -57,4 +57,58 @@ class SaleController extends Controller
         $sale = Sale::with(['client', 'package', 'user'])->findOrFail($id);
         return view('sales.show', compact('sale'));
     }
+
+    public function edit($id)
+    {
+        $sale = Sale::findOrFail($id);
+        $clients = Client::all();
+        $packages = Package::where('situacao', 1)->get(); // Apenas pacotes ativos
+        return view('sales.edit', compact('sale', 'clients', 'packages'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'package_id' => 'required|exists:packages,id',
+            'quantidade' => 'required|integer|min:1',
+        ]);
+
+        $sale = Sale::findOrFail($id);
+        $oldPackage = $sale->package;
+        $newPackage = Package::findOrFail($request->package_id);
+
+        // Atualizar vagas no pacote antigo
+        $oldPackage->update(['vagas' => $oldPackage->vagas + $sale->quantidade]);
+
+        // Verificar vagas disponíveis no novo pacote
+        if ($newPackage->vagas < $request->quantidade) {
+            return back()->withErrors(['quantidade' => 'Quantidade excede o número de vagas disponíveis']);
+        }
+
+        // Atualizar quantidade de vagas no novo pacote
+        $newPackage->update(['vagas' => $newPackage->vagas - $request->quantidade]);
+
+        // Atualizar a venda
+        $sale->update([
+            'client_id' => $request->client_id,
+            'package_id' => $request->package_id,
+            'quantidade' => $request->quantidade,
+        ]);
+
+        return redirect()->route('sales.show', $sale->id)->with('success', 'Venda atualizada com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        $sale = Sale::findOrFail($id);
+        $package = $sale->package;
+
+        // Atualizar quantidade de vagas no pacote
+        $package->update(['vagas' => $package->vagas + $sale->quantidade]);
+
+        $sale->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Venda excluída com sucesso!');
+    }
 }

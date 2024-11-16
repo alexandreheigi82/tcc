@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     // Rotas de Vendas
+    Route::resource('sales', SaleController::class)->middleware('auth');
     Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
     Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
     Route::get('/sales/{sale}', [SaleController::class, 'show'])->name('sales.show');
