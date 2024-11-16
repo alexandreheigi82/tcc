@@ -75,21 +75,26 @@ class SaleController extends Controller
         ]);
 
         $sale = Sale::findOrFail($id);
-        $oldPackage = $sale->package;
-        $newPackage = Package::findOrFail($request->package_id);
+        $package = Package::findOrFail($request->package_id);
 
-        // Atualizar vagas no pacote antigo
-        $oldPackage->update(['vagas' => $oldPackage->vagas + $sale->quantidade]);
+        // Verifique se o pacote está ativo
+        if ($package->situacao != 1) {
+            return redirect()->back()->withErrors(['package_id' => 'Este pacote não está disponível para venda.']);
+        }
 
-        // Verificar vagas disponíveis no novo pacote
-        if ($newPackage->vagas < $request->quantidade) {
+        // Restaurar vagas anteriores
+        $quantidade_vagas_disponiveis = $package->vagas + $sale->quantidade;
+
+        // Subtrair vagas conforme a nova quantidade
+        $quantidade_vagas_disponiveis -= $request->quantidade;
+
+        if ($quantidade_vagas_disponiveis < 0) {
             return back()->withErrors(['quantidade' => 'Quantidade excede o número de vagas disponíveis']);
         }
 
-        // Atualizar quantidade de vagas no novo pacote
-        $newPackage->update(['vagas' => $newPackage->vagas - $request->quantidade]);
+        // Atualizar a quantidade de vagas disponíveis no pacote
+        $package->update(['vagas' => $quantidade_vagas_disponiveis]);
 
-        // Atualizar a venda
         $sale->update([
             'client_id' => $request->client_id,
             'package_id' => $request->package_id,
@@ -98,6 +103,7 @@ class SaleController extends Controller
 
         return redirect()->route('sales.show', $sale->id)->with('success', 'Venda atualizada com sucesso!');
     }
+
 
     public function destroy($id)
     {

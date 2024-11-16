@@ -14654,3 +14654,11 @@ Did you mean one of these?
 #58 D:\\2024.2sem\\tcc\\tcc\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('D:\\\\2024.2sem\\\\tc...')
 #59 {main}
 "} 
+[2024-11-16 21:48:02] local.INFO: Tentativa de login com o email: {"email":"admin@email.com"} 
+[2024-11-16 21:48:02] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":4,"nome":"Admin","sobrenome":"Root","email":"admin@email.com","senha":"$2y$12$IXDnCOKiuf9sdgPW/eV9POD0PpN..xbapaSdSsypNh2Ii8WN66/W6","administrador":0,"vendedor":0,"created_at":"2024-11-16T18:31:26.000000Z","updated_at":"2024-11-16T18:31:26.000000Z"}}} 
+[2024-11-16 21:48:02] local.INFO: Senha correta, autenticando usuário  
+[2024-11-16 21:48:02] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-16 21:53:08] local.INFO: Entrou no método store do PackageController  
+[2024-11-16 21:53:28] local.INFO: Iniciando atualização do pacote  
+[2024-11-16 21:53:28] local.INFO: Valor de situacao recebido: on  
+[2024-11-16 21:53:28] local.INFO: Valor de situacao após processamento: 1  
