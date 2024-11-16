@@ -22,6 +22,10 @@
                     Telefone: {{ $client->telefone }}<br>
                     Cidade: {{ $client->cidade }}<br>
                     Estado: {{ $client->estado }}<br>
+                    Status: {{ $client->situacao ? 'Ativo' : 'Inativo' }}<br>
+                    @auth
+                        <a href="{{ route('clients.edit', $client->id) }}">Editar</a>
+                    @endauth
                 </li>
             @endforeach
         </ul>

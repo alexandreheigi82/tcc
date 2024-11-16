@@ -12,6 +12,6 @@ class Client extends Model
     protected $fillable = [
         'email', 'cpf', 'nome', 'sobrenome', 'telefone',
         'data_nascimento', 'cep', 'logradouro', 'numero',
-        'complemento', 'bairro', 'cidade', 'estado'
+        'complemento', 'bairro', 'cidade', 'estado', 'situacao',
     ];
 }

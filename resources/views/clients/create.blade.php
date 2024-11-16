@@ -67,6 +67,11 @@
             <label for="estado">Estado:</label>
             <input type="text" id="estado" name="estado" required>
         </div>
+        <div>
+             <label for="situacao">Ativo:</label>
+             <input type="checkbox" id="situacao" name="situacao" value="1" checked>
+        </div>
+
         <button type="submit">Salvar</button>
         <button type="button" onclick="window.location='{{ route('home') }}'">Voltar</button>
     </form>
