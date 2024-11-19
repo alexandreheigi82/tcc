@@ -52,6 +52,23 @@ class SaleController extends Controller
         return redirect()->route('dashboard')->with('success', 'Venda realizada com sucesso!');
     }
 
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $sales = Sale::query()
+            ->whereHas('client', function ($query) use ($search) {
+                $query->where('nome', 'LIKE', "%{$search}%")
+                      ->orWhere('sobrenome', 'LIKE', "%{$search}%");
+            })
+            ->orWhereHas('package', function ($query) use ($search) {
+                $query->where('titulo', 'LIKE', "%{$search}%");
+            })
+            ->get();
+
+        return view('sales.index', compact('sales'));
+    }
+
     public function show($id)
     {
         $sale = Sale::with(['client', 'package', 'user'])->findOrFail($id);
@@ -103,7 +120,6 @@ class SaleController extends Controller
 
         return redirect()->route('sales.show', $sale->id)->with('success', 'Venda atualizada com sucesso!');
     }
-
 
     public function destroy($id)
     {

@@ -10,60 +10,34 @@
     <p>Aqui você pode gerenciar clientes, pacotes de turismo e usuários.</p>
 
     <!-- Sessão de Clientes -->
+     <br>
     <div>
-        <h3>Clientes</h3>
-        <a href="{{ route('clients.create') }}">Cadastrar Novo Cliente</a>
-        <a href="{{ route('clients.index') }}">Visualizar Clientes</a>
+        <h3><strong>Clientes</strong></h3>
+        <a href="{{ route('clients.create') }}">Cadastrar Novo Cliente  |</a>
+        <a href="{{ route('clients.index') }}" target="_blank">Visualizar Clientes</a>
     </div>
 
     <!-- Sessão de Pacotes de Turismo -->
+     <br>
     <div>
-        <h3>Pacotes de Turismo</h3>
-        <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
-        <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
+        <h3><strong>Pacotes de Turismo</strong></h3>
+        <a href="{{ route('packages.create') }}">Criar Pacote de Turismo  |</a>
+        <a href="{{ route('packages.index') }}" target="_blank">Ver Pacotes de Turismo</a>
     </div>
 
     <!-- Sessão de Usuários -->
+     <br>
     <div>
-        <h3>Usuários</h3>
-        <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
-        <a href="{{ route('users.index') }}">Visualizar Usuários</a>
+        <h3><strong>Usuários</strong></h3>
+        <a href="{{ route('users.create') }}">Cadastrar Novo Usuário  |</a>
+        <a href="{{ route('users.index') }}" target="_blank">Visualizar Usuários</a>
     </div>
 
     <!-- Sessão de Vendas -->
+     <br>
     <div>
-        <h3>Vendas</h3>
-        <a href="{{ route('sales.create') }}">Efetuar Venda</a>
-
-        <!-- Lista de Vendas -->
-        <h4>Lista de Vendas</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID Venda</th>
-                    <th>Cliente</th>
-                    <th>Pacote</th>
-                    <th>Quantidade</th>
-                    <th>ID Vendedor</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($sales as $sale)
-                    @if ($sale->package)
-                        <tr>
-                            <td><a href="{{ route('sales.show', ['sale' => $sale->id]) }}">{{ $sale->id }}</a></td>
-                            <td>{{ $sale->client->nome }} {{ $sale->client->sobrenome }}</td>
-                            <td>{{ $sale->package->titulo }}</td>
-                            <td>{{ $sale->quantidade }}</td>
-                            <td>{{ $sale->user_id }}</td>
-                        </tr>
-                    @else
-                        <tr>
-                            <td colspan="5">Pacote relacionado foi removido.</td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
+        <h3><strong>Vendas</strong></h3>
+        <a href="{{ route('sales.create') }}">Efetuar Venda  |</a>
+        <a href="{{ route('sales.index') }}" target="_blank">Visualizar Vendas</a>
     </div>
 @endsection
