@@ -32,13 +32,11 @@ class AuthController extends Controller
             Log::info('Senha correta, autenticando usuário');
             Auth::login($user);
             Log::info('Usuário autenticado, redirecionando para a home');
-            return redirect()->route('home');
+            return redirect()->route('home')->with('status', 'Você está logado com sucesso!');
         }
 
         Log::warning('Credenciais não correspondem aos registros');
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
-        ]);
+        return back()->withErrors(['email' => 'As credenciais não correspondem aos nossos registros.']);
     }
 
     public function logout(Request $request)

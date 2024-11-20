@@ -21,8 +21,13 @@ class ClientController extends Controller
 
     public function search(Request $request)
     {
-        $term = $request->input('term');
-        $clients = Client::where('nome', 'LIKE', '%' . $term . '%')->get();
+        $term = $request->input('term'); // Buscar apenas clientes ativos
+        $clients = Client::where('situacao', 1)
+            ->where(function ($query) use ($term) {
+                $query->where('nome', 'LIKE', "%{$term}%")
+                    ->orWhere('sobrenome', 'LIKE', "%{$term}%");
+            })
+            ->get();
         return response()->json($clients);
     }
 

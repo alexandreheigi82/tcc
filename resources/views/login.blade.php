@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +34,6 @@
         }
     </style>
 </head>
-
 <body class="font-sans flex justify-center items-center h-screen m-2">
     <!-- Contêiner azul -->
     <div class="bg-[#7bc6c9] p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
@@ -142,15 +140,10 @@
             errorList.innerHTML = ''; // Limpar erros anteriores
             errorContainer.style.display = 'block'; // Mostrar container de erros
 
-            // Mapeamento de erros para tradução
-
-
             const listItem = document.createElement('li');
             listItem.textContent = 'Usuário ou senha incorretos';
             errorList.appendChild(listItem);
-
         }
     </script>
 </body>
-
 </html>
