@@ -17388,3 +17388,110 @@ into your web browser: <span class="break-all" style="box-sizing: border-box; fo
 [2024-11-20 16:37:33] local.INFO: Iniciando atualização do usuário  
 [2024-11-20 16:37:33] local.INFO: Valor de situacao recebido:   
 [2024-11-20 16:37:33] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 16:44:57] local.INFO: Entrou no método store do UserController  
+[2024-11-20 16:45:38] local.INFO: Tentativa de login com o email: {"email":"vendedor12@email.com"} 
+[2024-11-20 16:45:38] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":8,"nome":"Vendedor12","sobrenome":"N12","email":"vendedor12@email.com","senha":"$2y$12$rBFRGc0UZ0A8wjw/ePEnn.j7XsfpHmx7Ve.urwkEJXfLxXGrfkBwK","situacao":1,"administrador":0,"vendedor":0,"created_at":"2024-11-20T16:44:57.000000Z","updated_at":"2024-11-20T16:44:57.000000Z"}}} 
+[2024-11-20 16:45:39] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 16:45:39] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 16:45:59] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 16:45:59] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 16:45:59] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 16:46:18] local.INFO: Tentativa de login com o email: {"email":"vendedor12@email.com"} 
+[2024-11-20 16:46:18] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":8,"nome":"Vendedor12","sobrenome":"N12","email":"vendedor12@email.com","senha":"$2y$12$9hghvuzH/2QzER.mjKmSVu1nu9vKTATO6vuU7tp54okJWqxaoHKIK","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-20T16:44:57.000000Z","updated_at":"2024-11-20T16:45:59.000000Z"}}} 
+[2024-11-20 16:46:19] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 16:46:19] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 17:05:14] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 17:05:14] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":1,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T15:53:57.000000Z"}}} 
+[2024-11-20 17:05:14] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 17:05:14] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 17:25:07] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 17:25:07] local.INFO: Valor de situacao recebido:   
+[2024-11-20 17:25:07] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 17:25:46] local.INFO: Tentativa de login com o email: {"email":"vendedor11@email.com"} 
+[2024-11-20 17:25:46] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":7,"nome":"Vendedor11","sobrenome":"N.11","email":"vendedor11@email.com","senha":"$2y$12$M8hM0tduisLrdaATde.XBOomztd7bUIu4vmCX5qCdh14b3Xsj.n6a","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-20T16:35:31.000000Z","updated_at":"2024-11-20T17:25:07.000000Z"}}} 
+[2024-11-20 17:25:46] local.WARNING: Credenciais não correspondem aos registros  
+[2024-11-20 17:26:03] local.INFO: Tentativa de login com o email: {"email":"vendedor11@email.com"} 
+[2024-11-20 17:26:03] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":7,"nome":"Vendedor11","sobrenome":"N.11","email":"vendedor11@email.com","senha":"$2y$12$M8hM0tduisLrdaATde.XBOomztd7bUIu4vmCX5qCdh14b3Xsj.n6a","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-20T16:35:31.000000Z","updated_at":"2024-11-20T17:25:07.000000Z"}}} 
+[2024-11-20 17:26:03] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 17:26:03] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:22:57] local.INFO: Tentativa de login com o email: {"email":"lunas.tours.tcc@gmail.com"} 
+[2024-11-20 18:22:57] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":9,"nome":"Admin","sobrenome":"User","email":"lunas.tours.tcc@gmail.com","senha":"$2y$12$QKBqHV.ZBu0ggG8z1ebfH.1tPOnMkd9tkjBau.pwOE4pf8sn5Ij9O","situacao":1,"administrador":1,"vendedor":0,"created_at":"2024-11-20T18:21:49.000000Z","updated_at":"2024-11-20T18:21:49.000000Z"}}} 
+[2024-11-20 18:22:57] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:22:57] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:23:54] local.INFO: Entrou no método store do UserController  
+[2024-11-20 18:24:21] local.INFO: Entrou no método store do UserController  
+[2024-11-20 18:24:59] local.INFO: Tentativa de login com o email: {"email":"administrador.eig@gmail.com"} 
+[2024-11-20 18:24:59] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":10,"nome":"Vendedor13","sobrenome":"n.13","email":"administrador.eig@gmail.com","senha":"$2y$12$WPTcrjbmnrT24R3UJloco.ZqPahwbKpMpiz5JHlx5oUEDORMN96ei","situacao":1,"administrador":0,"vendedor":0,"created_at":"2024-11-20T18:24:21.000000Z","updated_at":"2024-11-20T18:24:21.000000Z"}}} 
+[2024-11-20 18:24:59] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:24:59] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:25:30] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 18:25:30] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T18:14:30.000000Z"}}} 
+[2024-11-20 18:25:30] local.WARNING: Credenciais não correspondem aos registros  
+[2024-11-20 18:25:41] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 18:25:41] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T18:14:30.000000Z"}}} 
+[2024-11-20 18:25:41] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:25:41] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:35:45] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 18:35:45] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T18:14:30.000000Z"}}} 
+[2024-11-20 18:35:45] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:35:45] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:41:02] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 18:41:02] local.INFO: Valor de situacao recebido:   
+[2024-11-20 18:41:02] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 18:41:33] local.INFO: Tentativa de login com o email: {"email":"lunas.tours.tcc@gmail.com"} 
+[2024-11-20 18:41:33] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":9,"nome":"Admin","sobrenome":"User","email":"lunas.tours.tcc@gmail.com","senha":"$2y$12$QKBqHV.ZBu0ggG8z1ebfH.1tPOnMkd9tkjBau.pwOE4pf8sn5Ij9O","situacao":1,"administrador":1,"vendedor":0,"created_at":"2024-11-20T18:21:49.000000Z","updated_at":"2024-11-20T18:21:49.000000Z"}}} 
+[2024-11-20 18:41:33] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:41:33] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:44:59] local.INFO: Entrou no método store do UserController  
+[2024-11-20 18:45:13] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 18:45:13] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T18:14:30.000000Z"}}} 
+[2024-11-20 18:45:13] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:45:13] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:45:49] local.INFO: Tentativa de login com o email: {"email":"lunas.tours.tcc@gmail.com"} 
+[2024-11-20 18:45:49] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":9,"nome":"Admin","sobrenome":"User","email":"lunas.tours.tcc@gmail.com","senha":"$2y$12$QKBqHV.ZBu0ggG8z1ebfH.1tPOnMkd9tkjBau.pwOE4pf8sn5Ij9O","situacao":1,"administrador":1,"vendedor":0,"created_at":"2024-11-20T18:21:49.000000Z","updated_at":"2024-11-20T18:21:49.000000Z"}}} 
+[2024-11-20 18:45:50] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:45:50] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 18:53:24] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 18:53:24] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":0,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T18:14:30.000000Z"}}} 
+[2024-11-20 18:53:24] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 18:53:24] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 19:02:26] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:02:26] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:02:26] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 19:02:50] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:02:50] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:02:50] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 19:03:44] local.INFO: Tentativa de login com o email: {"email":"lunas.tours.tcc@gmail.com"} 
+[2024-11-20 19:03:44] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":9,"nome":"Admin","sobrenome":"User","email":"lunas.tours.tcc@gmail.com","senha":"$2y$12$QKBqHV.ZBu0ggG8z1ebfH.1tPOnMkd9tkjBau.pwOE4pf8sn5Ij9O","situacao":1,"administrador":1,"vendedor":0,"created_at":"2024-11-20T18:21:49.000000Z","updated_at":"2024-11-20T18:21:49.000000Z"}}} 
+[2024-11-20 19:03:44] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 19:03:44] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 19:04:35] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:04:35] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:04:35] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 19:05:06] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:05:06] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:05:06] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 19:09:07] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:09:07] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:09:07] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-20 19:09:22] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:09:22] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:09:22] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-20 19:09:48] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:09:48] local.INFO: Valor de situacao recebido:   
+[2024-11-20 19:09:48] local.INFO: Valor de situacao após processamento:   
+[2024-11-20 19:11:32] local.INFO: Iniciando atualização do usuário  
+[2024-11-20 19:11:32] local.INFO: Valor de situacao recebido: 1  
+[2024-11-20 19:11:32] local.INFO: Valor de situacao após processamento: 1  
+[2024-11-20 19:17:52] local.INFO: Entrou no método store do UserController  
+[2024-11-20 19:22:12] local.INFO: Entrou no método store do PackageController  
+[2024-11-20 19:25:51] local.INFO: Entrou no método store do PackageController  
+[2024-11-20 19:28:33] local.INFO: Entrou no método store do PackageController  
+[2024-11-20 19:57:19] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 19:57:19] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":1,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T19:01:37.000000Z"}}} 
+[2024-11-20 19:57:19] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 19:57:19] local.INFO: Usuário autenticado, redirecionando para a home  
+[2024-11-20 20:01:16] local.INFO: Tentativa de login com o email: {"email":"eig_xandy@hotmail.com"} 
+[2024-11-20 20:01:16] local.INFO: Usuário encontrado: {"user":{"App\\Models\\User":{"id":1,"nome":"Alexandre","sobrenome":"Heigi","email":"eig_xandy@hotmail.com","senha":"$2y$12$8I4G.SZ2zfaA3fy8gvPlAuEWPHDhzErTcOSCo3pkPnyP9pMj35cji","situacao":1,"administrador":0,"vendedor":0,"created_at":"2024-11-03T22:47:34.000000Z","updated_at":"2024-11-20T19:01:37.000000Z"}}} 
+[2024-11-20 20:01:16] local.INFO: Senha correta, autenticando usuário  
+[2024-11-20 20:01:16] local.INFO: Usuário autenticado, redirecionando para a home  

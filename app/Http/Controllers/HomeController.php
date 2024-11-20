@@ -9,12 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $packages = Package::where('situacao', true)->get(); // Apenas pacotes ativos
+        $query = Package::query();
+
+        // Filtros de Categoria e Tipo
+        if ($request->has('categoria') && $request->categoria != '') {
+            $query->where('categoria', $request->categoria);
+        }
+        if ($request->has('tipo') && $request->tipo != '') {
+            $query->where('tipo', $request->tipo);
+        }
+
+        $packages = $query->where('situacao', true)->get(); // Apenas pacotes ativos
         return view('home', ['packages' => $packages]);
     }
-
 
     public function dashboard()
     {
@@ -25,5 +34,4 @@ class HomeController extends Controller
         $sales = Sale::with(['client', 'package', 'user'])->get();
         return view('dashboard', compact('sales'));
     }
-
 }

@@ -73,7 +73,7 @@ class UserController extends Controller
         if ($request->filled('senha')) {
             $user->senha = Hash::make($request->input('senha'));
         }
-        $user->situacao = $request->input('situacao') === 'on' ? true : false;
+        $user->situacao = $request->has('situacao') ? true : false;
 
         Log::info('Valor de situacao após processamento: ' . $user->situacao);
 
@@ -81,6 +81,7 @@ class UserController extends Controller
 
         return redirect()->route('users.show', ['user' => $user->id])->with('message', 'Usuário atualizado com sucesso!');
     }
+
 
     public function destroy(User $user)
     {
@@ -92,9 +93,10 @@ class UserController extends Controller
 
     public function inactive()
     {
-        $users = User::where('situacao', 0)->get(); // Apenas usuários inativos
+        $users = User::where('situacao', false)->get(); // Apenas usuários inativos
         return view('users_inactive', ['users' => $users]);
     }
+
 
     public function reactivate($id)
     {

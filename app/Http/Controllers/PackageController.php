@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\Log;
 
 class PackageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $packages = Package::where('situacao', true)->get(); // Apenas pacotes ativos
+        $query = Package::query();
+
+        // Filtros de Categoria e Tipo
+        if ($request->has('categoria') && $request->categoria != '') {
+            $query->where('categoria', $request->categoria);
+        }
+        if ($request->has('tipo') && $request->tipo != '') {
+            $query->where('tipo', $request->tipo);
+        }
+
+        $packages = $query->where('situacao', true)->get(); // Apenas pacotes ativos
         return view('packages.index', ['packages' => $packages]);
     }
+
 
 
     public function create()
@@ -21,40 +32,40 @@ class PackageController extends Controller
     }
 
     public function store(Request $request)
-{
-    Log::info('Entrou no método store do PackageController');
-    $request->validate([
-        'titulo' => 'required|string|max:255',
-        'descricao' => 'required|string',
-        'valor' => 'required|numeric',
-        'vagas' => 'required|integer',
-        'imagem' => 'nullable|image|max:2048',
-        'link' => 'nullable|url',
-        'categoria' => 'required|string',
-        'tipo' => 'required|string',
-        'situacao' => 'boolean',
-    ]);
+    {
+        Log::info('Entrou no método store do PackageController');
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'valor' => 'required|numeric',
+            'vagas' => 'required|integer',
+            'imagem' => 'nullable|image|max:2048',
+            'link' => 'nullable|url',
+            'categoria' => 'required|string',
+            'tipo' => 'required|string',
+            'situacao' => 'boolean',
+        ]);
 
-    $package = new Package();
-    $package->titulo = $request->input('titulo');
-    $package->descricao = $request->input('descricao');
-    $package->valor = $request->input('valor');
-    $package->vagas = $request->input('vagas');
+        $package = new Package();
+        $package->titulo = $request->input('titulo');
+        $package->descricao = $request->input('descricao');
+        $package->valor = $request->input('valor');
+        $package->vagas = $request->input('vagas');
 
-    if ($request->hasFile('imagem')) {
-        $path = $request->file('imagem')->store('imagens', 'public');
-        $package->imagem = $path;
+        if ($request->hasFile('imagem')) {
+            $path = $request->file('imagem')->store('imagens', 'public');
+            $package->imagem = $path;
+        }
+
+        $package->link = $request->input('link');
+        $package->categoria = $request->input('categoria');
+        $package->tipo = $request->input('tipo');
+        $package->situacao = $request->has('situacao') ? true : false;
+
+        $package->save();
+
+        return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
     }
-
-    $package->link = $request->input('link');
-    $package->categoria = $request->input('categoria');
-    $package->tipo = $request->input('tipo');
-    $package->situacao = $request->has('situacao') ? true : false;
-
-    $package->save();
-
-    return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
-}
 
 
 
@@ -72,43 +83,43 @@ class PackageController extends Controller
     }
 
     public function update(Request $request, Package $package)
-{
-    Log::info('Iniciando atualização do pacote');
-    Log::info('Valor de situacao recebido: ' . $request->input('situacao'));
+    {
+        Log::info('Iniciando atualização do pacote');
+        Log::info('Valor de situacao recebido: ' . $request->input('situacao'));
 
-    $request->validate([
-        'titulo' => 'required|string|max:255',
-        'descricao' => 'required|string',
-        'valor' => 'required|numeric',
-        'vagas' => 'required|integer',
-        'imagem' => 'nullable|image|max:2048',
-        'link' => 'nullable|url',
-        'categoria' => 'required|string',
-        'tipo' => 'required|string',
-        'situacao' => 'nullable|string',
-    ]);
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'valor' => 'required|numeric',
+            'vagas' => 'required|integer',
+            'imagem' => 'nullable|image|max:2048',
+            'link' => 'nullable|url',
+            'categoria' => 'required|string',
+            'tipo' => 'required|string',
+            'situacao' => 'nullable|string',
+        ]);
 
-    $package->titulo = $request->input('titulo');
-    $package->descricao = $request->input('descricao');
-    $package->valor = $request->input('valor');
-    $package->vagas = $request->input('vagas');
+        $package->titulo = $request->input('titulo');
+        $package->descricao = $request->input('descricao');
+        $package->valor = $request->input('valor');
+        $package->vagas = $request->input('vagas');
 
-    if ($request->hasFile('imagem')) {
-        $path = $request->file('imagem')->store('imagens', 'public');
-        $package->imagem = $path;
+        if ($request->hasFile('imagem')) {
+            $path = $request->file('imagem')->store('imagens', 'public');
+            $package->imagem = $path;
+        }
+
+        $package->link = $request->input('link');
+        $package->categoria = $request->input('categoria');
+        $package->tipo = $request->input('tipo');
+        $package->situacao = $request->input('situacao') === 'on' ? true : false;
+
+        Log::info('Valor de situacao após processamento: ' . $package->situacao);
+
+        $package->save();
+
+        return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
     }
-
-    $package->link = $request->input('link');
-    $package->categoria = $request->input('categoria');
-    $package->tipo = $request->input('tipo');
-    $package->situacao = $request->input('situacao') === 'on' ? true : false;
-
-    Log::info('Valor de situacao após processamento: ' . $package->situacao);
-
-    $package->save();
-
-    return redirect()->route('packages.show', ['package' => $package->id])->with('message', 'Pacote atualizado com sucesso!');
-}
 
 
     public function destroy(Package $package)
@@ -124,10 +135,4 @@ class PackageController extends Controller
         $packages = Package::where('situacao', 0)->get(); // Apenas pacotes inativos
         return view('packages.inactive', ['packages' => $packages]);
     }
-
-
-
-
-
-
 }

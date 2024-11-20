@@ -5,9 +5,10 @@
 <h2>Usuário - {{ $user->nome }}</h2>
 
 @if (session()->has('message'))
-{{ session()->get('message') }}
+    {{ session()->get('message') }}
 @endif
 
+<p>Email: {{ $user->email }}</p>
 <p>Status: {{ $user->situacao ? 'Ativo' : 'Inativo' }}</p>
 
 @if (!$user->situacao)

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'sobrenome',
         'email',
         'senha',
+        'administrador',
     ];
 
     /**

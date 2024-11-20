@@ -8,7 +8,7 @@
 {{ session()->get('message') }}
 @endif
 
-<form action="{{ route('users.update',['user'=>$user->id]) }}" method="post">
+<form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
     @csrf
     <input type="hidden" name="_method" value="PUT">
     <input type="text" name="nome" value="{{ $user->nome }}">
