@@ -35,7 +35,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:clients,email',
-            'cpf' => ['required', new \App\Rules\Cpf],
+            'cpf' => ['required', 'unique:clients,cpf', new \App\Rules\Cpf], // Manter a validação do CPF
             'nome' => 'required|string|max:255',
             'sobrenome' => 'required|string|max:255',
             'telefone' => 'required|string|max:15',
@@ -65,7 +65,7 @@ class ClientController extends Controller
             'bairro' => $request->input('bairro'),
             'cidade' => $request->input('cidade'),
             'estado' => $request->input('estado'),
-            'situacao' => $request->has('ativo') ? 1 : 0,
+            'situacao' => $request->has('situacao') ? 1 : 0,
         ]);
 
         return redirect()->route('clients.index')->with('success', 'Cliente cadastrado com sucesso!');
@@ -80,7 +80,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:clients,email,' . $id,
-            'cpf' => ['required', new \App\Rules\Cpf],
+            'cpf' => ['required', 'unique:clients,cpf,' . $id, new \App\Rules\Cpf], // Manter a validação do CPF
             'nome' => 'required|string|max:255',
             'sobrenome' => 'required|string|max:255',
             'telefone' => 'required|string|max:15',
@@ -102,7 +102,6 @@ class ClientController extends Controller
 
         return redirect()->route('clients.index')->with('success', 'Cliente atualizado com sucesso!');
     }
-
 
     public function destroy($id)
     {

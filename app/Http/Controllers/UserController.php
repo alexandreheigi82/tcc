@@ -4,88 +4,104 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-    public readonly User $user;
-
-    public function __construct()
-    {
-        $this->user = new User();
-    }
-
     public function index()
     {
-        $users = $this->user->all();
+        $users = User::where('situacao', true)->get(); // Apenas usuários ativos
         return view('users', ['users' => $users]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('user_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-{
-    $created = $this->user->create([
-        'nome' => $request->input('nome'),
-        'sobrenome' => $request->input('sobrenome'),
-        'email' => $request->input('email'),
-        'senha' => Hash::make($request->input('senha')),
-    ]);
-
-    if ($created){
-        return redirect()->back()->with('message', 'Criado com sucesso!');
-    }
-
-    return redirect()->back()->with('message', 'Erro!');
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(user $user)
     {
-        return view('user_show', ['user'=> $user]);
+        Log::info('Entrou no método store do UserController');
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'sobrenome' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users_tabela',
+            'senha' => 'required|string|min:8',
+            'situacao' => 'boolean',
+        ]);
+
+        $user = new User();
+        $user->nome = $request->input('nome');
+        $user->sobrenome = $request->input('sobrenome');
+        $user->email = $request->input('email');
+        $user->senha = Hash::make($request->input('senha'));
+        $user->situacao = $request->has('situacao') ? true : false;
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('message', 'Usuário criado com sucesso!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user_show', ['user' => $user]);
+    }
+
     public function edit(User $user)
     {
-        return view('user_edit', ['user'=>$user]);
+        return view('user_edit', ['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        $updated = $this->user->where('id', $id)->update($request->except(['_token', '_method']));
+        Log::info('Iniciando atualização do usuário');
+        Log::info('Valor de situacao recebido: ' . $request->input('situacao'));
 
-        if ($updated){
-            return redirect()->back()->with('message', 'Alterado com sucesso!');
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'sobrenome' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users_tabela,email,' . $user->id,
+            'senha' => 'nullable|string|min:8',
+            'situacao' => 'nullable|string',
+        ]);
+
+        $user->nome = $request->input('nome');
+        $user->sobrenome = $request->input('sobrenome');
+        $user->email = $request->input('email');
+        if ($request->filled('senha')) {
+            $user->senha = Hash::make($request->input('senha'));
         }
+        $user->situacao = $request->input('situacao') === 'on' ? true : false;
 
-        return redirect()->back()->with('message', 'Erro!');
+        Log::info('Valor de situacao após processamento: ' . $user->situacao);
 
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user->id])->with('message', 'Usuário atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $this->user->where('id', $id)->delete();
-        return redirect()->route('users.index');
+        $user->situacao = false;
+        $user->save();
+
+        return redirect()->route('users.index')->with('message', 'Usuário desativado com sucesso!');
+    }
+
+    public function inactive()
+    {
+        $users = User::where('situacao', 0)->get(); // Apenas usuários inativos
+        return view('users_inactive', ['users' => $users]);
+    }
+
+    public function reactivate($id)
+    {
+        $user = User::findOrFail($id);
+        $user->situacao = true;
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user->id])->with('message', 'Usuário reativado com sucesso!');
     }
 }

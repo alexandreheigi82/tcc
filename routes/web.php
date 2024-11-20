@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     // Rotas de Usuários
+    Route::put('/users/{user}/reactivate', [UserController::class, 'reactivate'])->name('users.reactivate');
+    Route::get('/users/inactive', [UserController::class, 'inactive'])->name('users.inactive');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
