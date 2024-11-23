@@ -12,13 +12,13 @@
 
 <nav>
     <ul>
-        <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="{{ route('dashboard') }}">Painel de Controle</a></li>
+        <li><a href="{{ route('home') }}"></a></li>
+        <li><a href="{{ route('dashboard') }}"></a></li>
         @if (Auth::check())
             <li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit">Logout</button>
+                    <button type="submit"></button>
                 </form>
             </li>
         @else
