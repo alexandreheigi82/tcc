@@ -17,6 +17,7 @@
     <h2 class="text-2xl font-bold text-center mb-4 text-blue-400">Bem-vindo, visitante</h2>
     <div class="text-center mb-8">
         <a href="{{ route('login.form') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400">Login</a>
+        <a href="{{ route('register') }}" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400 ml-4">Registrar</a>
     </div>
     @endif
 
