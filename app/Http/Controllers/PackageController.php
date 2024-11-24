@@ -84,8 +84,20 @@ class PackageController extends Controller
 
     public function update(Request $request, Package $package)
     {
+        // Depurar os dados do request
+        // dd($request->all());
+
         Log::info('Iniciando atualização do pacote');
         Log::info('Valor de situacao recebido: ' . $request->input('situacao'));
+
+        // Logs detalhados dos dados recebidos
+        Log::info('Título recebido: ' . $request->input('titulo'));
+        Log::info('Descrição recebida: ' . $request->input('descricao'));
+        Log::info('Valor recebido: ' . $request->input('valor'));
+        Log::info('Vagas recebidas: ' . $request->input('vagas'));
+        Log::info('Categoria recebida: ' . $request->input('categoria'));
+        Log::info('Tipo recebido: ' . $request->input('tipo'));
+        Log::info('Situação recebida: ' . $request->input('situacao'));
 
         $request->validate([
             'titulo' => 'required|string|max:255',
@@ -96,7 +108,7 @@ class PackageController extends Controller
             'link' => 'nullable|url',
             'categoria' => 'required|string',
             'tipo' => 'required|string',
-            'situacao' => 'nullable|string',
+            'situacao' => 'nullable|boolean',
         ]);
 
         $package->titulo = $request->input('titulo');
@@ -112,7 +124,7 @@ class PackageController extends Controller
         $package->link = $request->input('link');
         $package->categoria = $request->input('categoria');
         $package->tipo = $request->input('tipo');
-        $package->situacao = $request->input('situacao') === 'on' ? true : false;
+        $package->situacao = $request->input('situacao') === '1' ? true : false;
 
         Log::info('Valor de situacao após processamento: ' . $package->situacao);
 
@@ -122,17 +134,29 @@ class PackageController extends Controller
     }
 
 
+
     public function destroy(Package $package)
-    {
+{
+    // Verifica se o pacote possui vendas relacionadas
+    if ($package->sales()->count() > 0) {
+        // Se houver vendas, inativa o pacote
         $package->situacao = false;
         $package->save();
 
-        return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
+        return redirect()->route('packages.index')->with('error', 'Pacote possui vendas relacionadas e foi inativado.');
     }
+
+    // Se não houver vendas, exclui o pacote
+    $package->delete();
+
+    return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
+}
+
+
 
     public function inactive()
     {
-        $packages = Package::where('situacao', 0)->get(); // Apenas pacotes inativos
+        $packages = Package::where('situacao', false)->get(); // Apenas pacotes inativos
         return view('packages.inactive', ['packages' => $packages]);
     }
 }

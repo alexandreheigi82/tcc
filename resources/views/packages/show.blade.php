@@ -24,14 +24,6 @@
                 @method('DELETE')
                 <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este pacote?')" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-400">Excluir</button>
             </form>
-            <form action="{{ route('packages.update', ['package' => $package->id]) }}" method="POST" class="inline-block">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="situacao" value="{{ $package->situacao ? 0 : 1 }}">
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400">
-                    {{ $package->situacao ? 'Desativar' : 'Ativar' }}
-                </button>
-            </form>
         </div>
         @else
         <p class="text-center">Pacote não encontrado ou foi removido.</p>

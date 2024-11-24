@@ -25,4 +25,6 @@ class Package extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function sales() { return $this->hasMany(Sale::class); }
 }

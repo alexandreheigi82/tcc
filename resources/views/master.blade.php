@@ -15,7 +15,7 @@
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
         }
-        
+
     </style>
 </head>
 <body>
@@ -53,6 +53,19 @@
         </div>
     @endif
 
+    <!-- Adicionar mensagens de feedback -->
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @yield('content')
 </div>
    <!-- Rodapé -->
@@ -61,8 +74,8 @@
         <h4 class="text-lg font-bold">Sobre a Lunas Tour</h4>
         <br>
         <p class="text-[#acd4e4]">Na Lunas Tour, transformamos viagens em experiências inesquecíveis.
-            <br> 
-            Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos. 
+            <br>
+            Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
             Com uma equipe apaixonada e dedicada, oferecemos pacotes de viagens que atendem a todos os estilos, sempre com o compromisso de superar expectativas.
         </p>
         <p class="text-[#acd4e4] mt-4">
