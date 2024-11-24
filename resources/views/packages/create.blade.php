@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('content')
-<div class="bg-black text-white min-h-screen flex items-center justify-center">
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center mb-4 text-blue-400">Criar Pacote de Turismo</h2>
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <h2 class="text-3xl font-bold text-center mb-6 text-[#6cb3c3]">Criar Pacote de Turismo</h2>
 
         @if ($errors->any())
         <div class="bg-red-500 text-white p-4 mb-4 rounded">
@@ -17,61 +17,69 @@
 
         <form action="{{ route('packages.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-4">
-                <label for="titulo" class="block mb-2">Título:</label>
-                <input type="text" id="titulo" name="titulo" required class="w-full p-2 rounded bg-gray-700 text-white">
+            <!-- Grid com duas colunas para título, descrição e valor -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="mb-4">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                </div>
+                <div class="mb-4">
+                    <textarea id="descricao" name="descricao" placeholder="Descrição" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none"></textarea>
+                </div>
             </div>
-            <div class="mb-4">
-                <label for="descricao" class="block mb-2">Descrição:</label>
-                <textarea id="descricao" name="descricao" required class="w-full p-2 rounded bg-gray-700 text-white"></textarea>
+
+            <!-- Grid com valor e vagas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="mb-4">
+                    <input type="text" id="valor" name="valor" placeholder="Valor" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                </div>
+                <div class="mb-4">
+                    <input type="number" id="vagas" name="vagas" placeholder="Vagas" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                </div>
             </div>
+
+            <!-- Input de imagem -->
             <div class="mb-4">
-                <label for="valor" class="block mb-2">Valor:</label>
-                <input type="text" id="valor" name="valor" required class="w-full p-2 rounded bg-gray-700 text-white">
+                <input type="file" id="imagem" name="imagem" class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
             </div>
+
+            <!-- Input de link -->
             <div class="mb-4">
-                <label for="vagas" class="block mb-2">Vagas:</label>
-                <input type="number" id="vagas" name="vagas" required class="w-full p-2 rounded bg-gray-700 text-white">
+                <input type="url" id="link" name="link" placeholder="Link" class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
             </div>
-            <div class="mb-4">
-                <label for="imagem" class="block mb-2">Imagem:</label>
-                <input type="file" id="imagem" name="imagem" class="w-full p-2 rounded bg-gray-700 text-white">
+
+            <!-- Seleção de categoria e tipo -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="mb-4">
+                    <select id="categoria" name="categoria" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                        <option value="Passagens">Passagens</option>
+                        <option value="Hotéis">Hotéis</option>
+                        <option value="Pacotes">Pacotes</option>
+                        <option value="Cruzeiros">Cruzeiros</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select id="tipo" name="tipo" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                        <option value="Tranquilo">Tranquilo</option>
+                        <option value="Urbano">Urbano</option>
+                        <option value="Religioso">Religioso</option>
+                        <option value="Ecoturismo">Ecoturismo</option>
+                        <option value="Internacional">Internacional</option>
+                        <option value="Gastronômico">Gastronômico</option>
+                        <option value="Esportivo">Esportivo</option>
+                    </select>
+                </div>
             </div>
-            <div class="mb-4">
-                <label for="link" class="block mb-2">Link:</label>
-                <input type="url" id="link" name="link" class="w-full p-2 rounded bg-gray-700 text-white">
+
+            <!-- Situação como checkbox -->
+            <div class="mb-6 flex items-center">
+                <label class="mr-3 text-[#26535e]">Ativo:</label>
+                <input type="checkbox" id="situacao" name="situacao" value="1" checked class="text-[#6cb3c3] focus:ring-[#6cb3c3] border-none">
             </div>
-            <div class="mb-4">
-                <label for="categoria" class="block mb-2">Categoria:</label>
-                <select id="categoria" name="categoria" required class="w-full p-2 rounded bg-gray-700 text-white">
-                    <option value="Passagens">Passagens</option>
-                    <option value="Hotéis">Hotéis</option>
-                    <option value="Pacotes">Pacotes</option>
-                    <option value="Cruzeiros">Cruzeiros</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="tipo" class="block mb-2">Tipo:</label>
-                <select id="tipo" name="tipo" required class="w-full p-2 rounded bg-gray-700 text-white">
-                    <option value="Tranquilo">Tranquilo</option>
-                    <option value="Urbano">Urbano</option>
-                    <option value="Religioso">Religioso</option>
-                    <option value="Ecoturismo">Ecoturismo</option>
-                    <option value="Internacional">Internacional</option>
-                    <option value="Gastronômico">Gastronômico</option>
-                    <option value="Esportivo">Esportivo</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="situacao" class="block mb-2">Situação:</label>
-                <select id="situacao" name="situacao" required class="w-full p-2 rounded bg-gray-700 text-white">
-                    <option value="1">Ativo</option>
-                    <option value="0">Inativo</option>
-                </select>
-            </div>
-            <div class="flex justify-between">
-                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-400">Salvar</button>
-                <button type="button" onclick="window.location='{{ route('home') }}'" class="bg-gray-600 text-white font-bold py-2 px-4 rounded hover:bg-gray-500">Cancelar</button>
+
+            <!-- Botões de ação -->
+            <div class="flex justify-between mt-6">
+                <button type="submit" class="bg-[#6cb3c3] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">Salvar</button>
+                <button type="button" onclick="window.location='{{ route('home') }}'" class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">Cancelar</button>
             </div>
         </form>
     </div>

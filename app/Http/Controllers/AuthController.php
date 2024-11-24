@@ -32,7 +32,7 @@ class AuthController extends Controller
             Log::info('Senha correta, autenticando usuário');
             Auth::login($user);
             Log::info('Usuário autenticado, redirecionando para a home');
-            return redirect()->route('home')->with('status', 'Você está logado com sucesso!');
+            return redirect()->route('dashboard')->with('status', 'Você está logado com sucesso!');
         }
 
         Log::warning('Credenciais não correspondem aos registros');

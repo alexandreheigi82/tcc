@@ -1,205 +1,85 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Lunas Tour</title>
-    @vite('resources/css/app.css')
+@extends('master')
 
-    <style>
-        body {
-            background: linear-gradient(to right, #6cb3c3, #acd4e4);
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            color: #26535e;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 2rem;
-            background-color: #26535e;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .header img {
-            width: 160px;
-            height: auto;
-        }
-
-        .nav-links a {
-            margin: 0 1rem;
-            color: #acd4e4;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .nav-links a:hover {
-            background-color: #547cac;
-            color: white;
-        }
-
-        .user-info {
-            background-color: #547cac;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            min-width: 200px;
-        }
-
-        .dropdown a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: #26535e;
-            text-decoration: none;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .dropdown a:last-child {
-            border-bottom: none;
-        }
-
-        .sidebar {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .types-list li {
-            padding: 0.5rem 1rem;
-            margin: 0.5rem 0;
-            background-color: #acd4e4;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .types-list li:hover {
-            background-color: #6cb3c3;
-            color: white;
-        }
-
-        .content h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .destaques {
-            margin-top: 1.5rem;
-        }
-
-        .destaques h2 {
-            margin-bottom: 1rem;
-        }
-
-        .pacote-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin: 0.5rem 0;
-        }
-
-        .pacote-card:hover {
-            transform: scale(1.02);
-            transition: transform 0.3s;
-        }
-    </style>
-</head>
-<body>
+@section('content')
+<div class="bg-[#6cb3c3] min-h-screen p-4 sm:p-6 lg:p-8 text-gray-800">
     <!-- Cabeçalho -->
-    <header class="header">
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
-        </a>
-        <nav class="nav-links">
-            <a href="{{ route('clients.index') }}">Clientes</a>
-            <a href="{{ route('packages.index') }}">Pacotes</a>
-            <a href="{{ route('users.index') }}">Usuários</a>
-            <a href="{{ route('sales.index') }}">Vendas</a>
-        </nav>
-        <div class="user-info" id="user-dropdown-toggle">
-            Vendedor(a): {{ Auth::user()->nome }}
-            <div class="dropdown" id="user-dropdown">
-                <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
-                <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
-                <a href="{{ route('clients.index') }}">Lista de Clientes</a>
-                <a href="{{ route('sales.create') }}">Efetuar Venda</a>
-                <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
-                <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
-                <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
-                <a href="{{ route('users.index') }}">Visualizar Usuários</a>
-                <a href="{{ route('sales.index') }}">Visualizar Vendas</a>
-                <a href="{{ route('logout') }}">Logout</a>
+    <header class="flex justify-between items-center p-4 bg-[#26535e] text-white shadow-lg mb-6">
+        <!-- Logo e Navegação Centralizada -->
+        <div class="flex items-center space-x-8 w-full">
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="flex-shrink-0">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour" class="w-40 h-auto">
+            </a>
+            
+            <!-- Navegação de Categorias Centralizada -->
+            <nav class="nav-links flex justify-center flex-grow space-x-4">
+                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Passagens</a>
+                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Hotéis</a>
+                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Pacotes</a>
+                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Cruzeiros</a>
+            </nav>
+            
+            <!-- Botão de Login -->
+            <div class="flex-shrink-0">
+                @if (Auth::check())
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login.form') }}" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Login</a>
+                @endif
             </div>
         </div>
     </header>
 
-    <!-- Layout -->
-    <div class="flex flex-col md:flex-row p-6 space-y-6 md:space-y-0">
-        <!-- Menu lateral -->
-        <aside class="sidebar w-full md:w-1/4">
-            <h3>Tipos de Passeios</h3>
-            <ul class="types-list">
-                <li>Tranquilo</li>
-                <li>Urbano</li>
-                <li>Religioso</li>
-                <li>Ecoturismo</li>
-                <li>Internacional</li>
-                <li>Gastronômico</li>
-                <li>Esportivo</li>
+    <!-- Conteúdo Principal -->
+    <div class="flex flex-col md:flex-row space-y-6 md:space-y-0">
+        <!-- Filtro Lateral Conectado ao Header -->
+        <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg rounded-bl-lg rounded-tl-lg md:min-h-screen">
+            <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
+            <ul class="space-y-2">
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</li>
+                <li class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</li>
             </ul>
         </aside>
 
-        <!-- Conteúdo -->
-        <main class="content flex-1">
-            <h2>Painel de Controle</h2>
-            <p class="text-center">Gerencie clientes, pacotes e usuários.</p>
-
-            <!-- Destaques -->
-            <section class="destaques">
-                <h2>Destaques</h2>
-                <div class="pacote-card">Pacote 1 - Detalhes...</div>
-                <div class="pacote-card">Pacote 2 - Detalhes...</div>
-                <div class="pacote-card">Pacote 3 - Detalhes...</div>
+        <!-- Pacotes Disponíveis -->
+        <main class="flex-1 bg-white p-6 shadow-lg rounded-lg">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#26535e]">Bem-vindo ao Lunas Tour</h2>
+            <section>
+                <h3 class="text-2xl font-bold text-center mb-4 text-[#26535e]">Pacotes Disponíveis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @if ($packages->isNotEmpty())
+                        @foreach ($packages as $package)
+                            @if ($package->situacao)
+                                <div class="bg-white p-4 rounded-lg shadow-lg border border-[#6cb3c3]">
+                                    <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
+                                    <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
+                                    <p class="mb-2 text-[#26535e]">Valor: {{ $package->valor }}</p>
+                                    <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
+                                    @if ($package->imagem)
+                                        <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
+                                    @endif
+                                    <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                                    <!-- Botão de Detalhes -->
+                                    <div class="flex space-x-2 mt-2">
+                                        <a href="{{ route('packages.show', ['package' => $package->id]) }}" class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-400">Detalhes</a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <p class="text-center col-span-3 text-[#26535e]">Nenhum pacote disponível.</p>
+                    @endif
+                </div>
             </section>
         </main>
     </div>
-
-    <!-- Script para dropdown -->
-    <script>
-        document.getElementById('user-dropdown-toggle').addEventListener('click', function () {
-            const dropdown = document.getElementById('user-dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
-    </script>
-</body>
-</html>
+</div>
+@endsection

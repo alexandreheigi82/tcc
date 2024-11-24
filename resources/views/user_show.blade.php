@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="bg-black text-white min-h-screen p-6 flex items-center justify-center">
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center mb-4 text-blue-400">Detalhes do Usuário</h2>
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center mb-4 text-[#6cb3c3]">Detalhes do Usuário</h2>
 
         @if (session()->has('message'))
         <div class="bg-green-500 text-white p-4 mb-4 rounded">
