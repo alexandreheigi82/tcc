@@ -10,7 +10,7 @@
             <a href="{{ route('home') }}" class="flex-shrink-0">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour" class="w-40 h-auto">
             </a>
-            
+
             <!-- Navegação de Categorias Centralizada -->
             <nav class="nav-links flex justify-center flex-grow space-x-4">
                 <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Passagens</a>
@@ -18,7 +18,7 @@
                 <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Pacotes</a>
                 <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Cruzeiros</a>
             </nav>
-            
+
             <!-- Botão de Login -->
             <div class="flex-shrink-0">
                 @if (Auth::check())
@@ -67,10 +67,12 @@
                                         <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
                                     @endif
                                     <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                                    @if (Auth::check())
                                     <!-- Botão de Detalhes -->
                                     <div class="flex space-x-2 mt-2">
                                         <a href="{{ route('packages.show', ['package' => $package->id]) }}" class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-400">Detalhes</a>
                                     </div>
+                                    @endif
                                 </div>
                             @endif
                         @endforeach
