@@ -136,21 +136,21 @@ class PackageController extends Controller
 
 
     public function destroy(Package $package)
-{
-    // Verifica se o pacote possui vendas relacionadas
-    if ($package->sales()->count() > 0) {
-        // Se houver vendas, inativa o pacote
-        $package->situacao = false;
-        $package->save();
+    {
+        // Verifica se o pacote possui vendas relacionadas
+        if ($package->sales()->count() > 0) {
+            // Se houver vendas, inativa o pacote
+            $package->situacao = false;
+            $package->save();
 
-        return redirect()->route('packages.index')->with('error', 'Pacote possui vendas relacionadas e foi inativado.');
+            return redirect()->route('packages.index')->with('error', 'Pacote possui vendas relacionadas e foi inativado.');
+        }
+
+        // Se não houver vendas, exclui o pacote
+        $package->delete();
+
+        return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
     }
-
-    // Se não houver vendas, exclui o pacote
-    $package->delete();
-
-    return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
-}
 
 
 

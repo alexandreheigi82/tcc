@@ -20,56 +20,62 @@
             <!-- Grid para organizar campos -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="mb-4">
-                    <input type="email" id="email" name="email" placeholder="Email" required 
+                    <input type="email" id="email" name="email" placeholder="Email" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="cpf" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required 
+                    <input type="text" id="cpf" name="cpf" placeholder="CPF" value="{{ old('cpf') }}" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="nome" name="nome" placeholder="Nome" required 
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required 
+                    <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="telefone" name="telefone" placeholder="Telefone" required 
+                    <input type="text" id="telefone" name="telefone" placeholder="Telefone" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de Nascimento" required 
+                    <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de Nascimento" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="cep" name="cep" placeholder="CEP" required 
+                    <input type="text" id="cep" name="cep" placeholder="CEP" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" required 
+                    <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="numero" name="numero" placeholder="Número" required 
+                    <input type="text" id="numero" name="numero" placeholder="Número" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="complemento" name="complemento" placeholder="Complemento" 
+                    <input type="text" id="complemento" name="complemento" placeholder="Complemento"
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="bairro" name="bairro" placeholder="Bairro" required 
+                    <input type="text" id="bairro" name="bairro" placeholder="Bairro" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="cidade" name="cidade" placeholder="Cidade" required 
+                    <input type="text" id="cidade" name="cidade" placeholder="Cidade" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
                 <div class="mb-4">
-                    <input type="text" id="estado" name="estado" placeholder="Estado" required 
+                    <input type="text" id="estado" name="estado" placeholder="Estado" required
                         class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                </div>
+
+                <!-- Campo Situação (Ativo/Inativo) -->
+                <div class="mb-6 flex items-center">
+                    <label class="mr-3 text-[#26535e]">Ativo:</label>
+                    <input type="checkbox" id="situacao" name="situacao" value="1" checked class="text-[#6cb3c3] focus:ring-[#6cb3c3] border-none">
                 </div>
             </div>
 
@@ -78,7 +84,7 @@
                 <button type="submit" class="bg-[#6cb3c3] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">
                     Salvar
                 </button>
-                <button type="button" onclick="window.location.href='{{ route('home') }}'" 
+                <button type="button" onclick="window.location.href='{{ route('home') }}'"
                     class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">
                     Voltar
                 </button>
