@@ -181,15 +181,17 @@
         <aside class="sidebar w-full md:w-1/4">
             <h3>Tipos de Passeios</h3>
             <ul class="types-list">
-                <li>Tranquilo</li>
-                <li>Urbano</li>
-                <li>Religioso</li>
-                <li>Ecoturismo</li>
-                <li>Internacional</li>
-                <li>Gastronômico</li>
-                <li>Esportivo</li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Todos']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Urbano']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Religioso']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Internacional']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
             </ul>
         </aside>
+
 
         <!-- Conteúdo -->
         <main class="content flex-1">
@@ -199,11 +201,27 @@
             <!-- Destaques -->
             <section class="destaques">
                 <h2>Destaques</h2>
-                <div class="pacote-card">Pacote 1 - Detalhes...</div>
-                <div class="pacote-card">Pacote 2 - Detalhes...</div>
-                <div class="pacote-card">Pacote 3 - Detalhes...</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @if ($packages->isNotEmpty())
+                    @foreach ($packages as $package)
+                    <div class="pacote-card bg-white p-4 rounded-lg shadow-lg border border-[#6cb3c3]">
+                        <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
+                        <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
+                        <p class="mb-2 text-[#26535e]">Valor: {{ $package->valor }}</p>
+                        <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
+                        @if ($package->imagem)
+                        <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
+                        @endif
+                        <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                    </div>
+                    @endforeach
+                    @else
+                    <p class="text-center col-span-3 text-[#26535e]">Nenhum pacote disponível.</p>
+                    @endif
+                </div>
             </section>
         </main>
+
     </div>
 
     <!-- Script para dropdown -->

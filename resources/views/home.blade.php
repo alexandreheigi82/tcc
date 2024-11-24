@@ -39,6 +39,7 @@
         <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg rounded-bl-lg rounded-tl-lg md:min-h-screen">
             <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
             <ul class="space-y-2">
+                <li><a href="{{ route('home', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
                 <li><a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
                 <li><a href="{{ route('home', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
                 <li><a href="{{ route('home', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
@@ -83,6 +84,7 @@
                 </div>
             </section>
         </main>
+
     </div>
 </div>
 @endsection

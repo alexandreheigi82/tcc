@@ -17,7 +17,7 @@ class HomeController extends Controller
         if ($request->has('categoria') && $request->categoria != '') {
             $query->where('categoria', $request->categoria);
         }
-        if ($request->has('tipo') && $request->tipo != '') {
+        if ($request->has('tipo') && $request->tipo != '' && $request->tipo != 'Todos') {
             $query->where('tipo', $request->tipo);
         }
 
@@ -25,13 +25,21 @@ class HomeController extends Controller
         return view('home', ['packages' => $packages]);
     }
 
-    public function dashboard()
+
+    public function dashboard(Request $request)
     {
         if (!Auth::check()) {
             return redirect()->route('login.form');
         }
 
+        $query = Package::query();
+
+        if ($request->has('tipo') && $request->tipo != '' && $request->tipo != 'Todos') {
+            $query->where('tipo', $request->tipo);
+        }
+
+        $packages = $query->where('situacao', true)->get(); // Apenas pacotes ativos
         $sales = Sale::with(['client', 'package', 'user'])->get();
-        return view('dashboard', compact('sales'));
+        return view('dashboard', compact('sales', 'packages'));
     }
 }
