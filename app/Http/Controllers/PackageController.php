@@ -21,8 +21,9 @@ class PackageController extends Controller
         }
 
         $packages = $query->where('situacao', true)->get(); // Apenas pacotes ativos
-        return view('packages.index', ['packages' => $packages]);
+        return view('home', ['packages' => $packages]); // Certifique-se de que a view seja 'home' para a página inicial
     }
+
 
 
 
