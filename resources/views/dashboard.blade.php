@@ -157,6 +157,7 @@
                 <a href="{{ route('sales.create') }}">Efetuar Venda</a>
                 <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
                 <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
+                <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
                 <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
                 <a href="{{ route('users.index') }}">Visualizar Usuários</a>
                 <a href="{{ route('sales.index') }}">Visualizar Vendas</a>
