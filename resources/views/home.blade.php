@@ -195,10 +195,10 @@
                         @foreach ($packages as $package)
                         @if ($package->situacao)
                         <div class="pacote-card bg-white p-4 rounded-lg shadow-lg border border-[#6cb3c3]">
-                            <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
-                            <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
-                            <p class="mb-2 text-[#26535e]">Valor: {{ $package->valor }}</p>
-                            <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
+                        <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
+                        <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
+                        <p class="mb-2 text-[#26535e]">Valor: R$ {{ number_format($package->valor, 2, ',', '.') }}</p>
+                        <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
                             @if ($package->imagem)
                             <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
                             @endif
@@ -224,7 +224,7 @@
 </section>
 
 <!-- Contatos -->
-<section id="contatos" class="bg-[#6cb3c3] py-6 text-white text-center">
+<section id="contatos" class="bg-[#acd4e4] py-6 text-white text-center">
     <h2 class="text-2xl font-bold mb-4">Entre em Contato</h2>
     <p>E-mail: contato@lunastour.com</p>
     <p>Telefone: (11) 1234-5678</p>
