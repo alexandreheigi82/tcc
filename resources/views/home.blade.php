@@ -217,12 +217,6 @@
             </main>
         </div>
     </div>
-    <!-- Sobre -->
-<section id="sobre" class="bg-[#547cac] p-6 text-white text-center">
-    <h2 class="text-2xl font-bold mb-4">Sobre a Lunas Tour</h2>
-    <p>Transformamos viagens em experiências inesquecíveis. Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.</p>
-</section>
-
 <!-- Contatos -->
 <section id="contatos" class="bg-[#acd4e4] py-6 text-white text-center">
     <h2 class="text-2xl font-bold mb-4">Entre em Contato</h2>
