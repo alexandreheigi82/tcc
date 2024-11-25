@@ -142,12 +142,7 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
         </a>
-        <nav class="nav-links">
-            <a href="{{ route('clients.index') }}">Clientes</a>
-            <a href="{{ route('packages.index') }}">Pacotes</a>
-            <a href="{{ route('users.index') }}">Usuários</a>
-            <a href="{{ route('sales.index') }}">Vendas</a>
-        </nav>
+
         <div class="user-info" id="user-dropdown-toggle">
             Usuário: {{ Auth::user()->nome }}
             <div class="dropdown" id="user-dropdown">

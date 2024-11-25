@@ -10,26 +10,18 @@
             <a href="{{ route('home') }}" class="flex-shrink-0">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour" class="w-40 h-auto">
             </a>
+        </div>
 
-            <!-- Navegação de Categorias Centralizada -->
-            <nav class="nav-links flex justify-center flex-grow space-x-4">
-                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Passagens</a>
-                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Hotéis</a>
-                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Pacotes</a>
-                <a href="#" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Cruzeiros</a>
-            </nav>
-
-            <!-- Botão de Login -->
-            <div class="flex-shrink-0">
-                @if (Auth::check())
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Logout</button>
-                </form>
-                @else
-                <a href="{{ route('login.form') }}" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Login</a>
-                @endif
-            </div>
+        <!-- Botão de Login/Logout Alinhado à Direita -->
+        <div class="flex-shrink-0">
+            @if (Auth::check())
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Logout</button>
+            </form>
+            @else
+            <a href="{{ route('login.form') }}" class="bg-[#547cac] text-white py-2 px-4 rounded hover:bg-[#26535e]">Login</a>
+            @endif
         </div>
     </header>
 
