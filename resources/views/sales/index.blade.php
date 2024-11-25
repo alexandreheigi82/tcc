@@ -8,6 +8,7 @@
     <form action="{{ route('sales.index') }}" method="GET" class="mb-4 flex justify-center space-x-4">
         <input type="text" name="search" placeholder="Pesquisar vendas" value="{{ request()->input('search') }}" class="w-full p-2 rounded bg-gray-700 text-white">
         <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-400">Pesquisar</button>
+        <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Voltar</a>
     </form>
 
     @if(request()->has('search'))

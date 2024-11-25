@@ -13,6 +13,7 @@
 
         <div class="mb-6 text-center">
             <a href="{{ route('clients.create') }}" class="bg-[#6cb3c3] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#547cac]">Cadastrar Novo Cliente</a>
+            <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Voltar</a>
         </div>
 
         @if ($clients->isEmpty())
