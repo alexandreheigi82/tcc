@@ -84,7 +84,7 @@
                 <button type="submit" class="bg-[#6cb3c3] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">
                     Salvar
                 </button>
-                <button type="button" onclick="window.location.href='{{ route('home') }}'"
+                <button type="button" onclick="window.location.href='{{ route('dashboard') }}'"
                     class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">
                     Voltar
                 </button>

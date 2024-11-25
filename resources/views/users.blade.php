@@ -7,6 +7,7 @@
         <!-- Botão de Criar Novo -->
         <div class="text-center mb-6">
             <a href="{{ route('users.create') }}" class="bg-[#6cb3c3] text-white py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">Criar Novo</a>
+            <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white py-3 px-6 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400">Voltar</a>
         </div>
 
         <hr class="mb-6 border-[#dcdcdc]">

@@ -32,7 +32,7 @@
                 </form>
             </li>
         @else
-            <li><a href="{{ route('login.form') }}">Login</a></li>
+            <!-- <li><a href="{{ route('login.form') }}">Login</a></li> -->
         @endif
     </ul>
 </nav>

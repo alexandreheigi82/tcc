@@ -49,7 +49,7 @@ class SaleController extends Controller
             'quantidade' => $request->quantidade,
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Venda realizada com sucesso!');
+        return redirect()->route('sales.index')->with('success', 'Venda realizada com sucesso!'); // Redirecionar para a lista de vendas
     }
 
     public function index(Request $request)

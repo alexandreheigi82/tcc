@@ -21,7 +21,7 @@
                 <label for="client_search" class="block mb-2">Cliente:</label>
                 <input type="text" id="client_search" name="client_search" placeholder="Digite o nome do cliente" required class="w-full p-2 rounded bg-gray-700 text-white">
                 <input type="hidden" id="client_id" name="client_id" required>
-                <div id="client_list" class="absolute bg-black text-white border-gray-300 rounded mt-2 w-full z-10 hidden">
+                <div id="client_list" class="absolute bg-black text-white border-gray-300 rounded mt-2 w-full z-10 hidden max-h-40 overflow-y-auto">
                     <!-- Resultados da busca serão exibidos aqui -->
                 </div>
             </div>
