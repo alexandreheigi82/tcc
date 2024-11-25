@@ -171,22 +171,21 @@
         </div>
     </header>
 
-    <!-- Layout -->
-    <div class="flex flex-col md:flex-row p-6 space-y-6 md:space-y-0">
-        <!-- Menu lateral -->
-        <aside class="sidebar w-full md:w-1/4">
-            <h3>Tipos de Passeios</h3>
-            <ul class="types-list">
-                <li><a href="{{ route('dashboard', ['tipo' => 'Todos']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Urbano']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Religioso']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Internacional']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
-            </ul>
-        </aside>
+   <!-- Conteúdo Principal -->
+   <div class="flex flex-col md:flex-row space-y-6 md:space-y-0">
+        <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg md:min-h-screen">
+        <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
+        <ul class="space-y-2">
+            <li><a href="{{ route('home', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Internacional']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
+            <li><a href="{{ route('home', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
+        </ul>
+    </aside>
 
 
         <!-- Conteúdo -->
@@ -209,6 +208,10 @@
                         <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
                         @endif
                         <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                         <!-- Botão de Detalhes -->
+                            <div class="flex space-x-2 mt-2">
+                                <a href="{{ route('packages.show', ['package' => $package->id]) }}" class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-400">Detalhes</a>
+                            </div>
                     </div>
                     @endforeach
                     @else
@@ -228,5 +231,19 @@
         });
     </script>
 </body>
+<footer class="bg-[#547cac] py-6 mt-8 text-white text-center">
+    <div class="max-w-3xl mx-auto">
+        <h4 class="text-lg font-bold">Sobre a Lunas Tour</h4>
+        <br>
+        <p class="text-[#acd4e4]">Na Lunas Tour, transformamos viagens em experiências inesquecíveis.
+            <br>
+            Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
+            Com uma equipe apaixonada e dedicada, oferecemos pacotes de viagens que atendem a todos os estilos, sempre com o compromisso de superar expectativas.
+        </p>
+        <p class="text-[#acd4e4] mt-4">
+            Descubra o mundo com quem entende de viagens. Na Lunas Tour, seu destino é a nossa inspiração!
+        </p>
+    </div>
+</footer>
 
 </html>
