@@ -141,6 +141,12 @@
     <header class="header">
         <a href="{{ route('home') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
+            <nav class="nav-links">
+            <a href="{{ route('clients.index') }}">Clientes</a>
+            <a href="{{ route('packages.index') }}">Pacotes</a>
+            <a href="{{ route('users.index') }}">Usuários</a>
+            <a href="{{ route('sales.index') }}">Vendas</a>
+        </nav>
         </a>
 
         <div class="user-info" id="user-dropdown-toggle">
@@ -176,14 +182,14 @@
         <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg md:min-h-screen">
             <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
             <ul class="space-y-2">
-                <li><a href="{{ route('home', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Internacional']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Internacional']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
+                <li><a href="{{ route('dashboard', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
             </ul>
         </aside>
 
