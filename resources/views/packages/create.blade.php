@@ -82,6 +82,27 @@
                 <button type="button" onclick="window.location='{{ route('dashboard') }}'" class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">Cancelar</button>
             </div>
         </form>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const valorInput = document.getElementById('valor');
+
+        valorInput.addEventListener('input', function (e) {
+            let value = e.target.value;
+            value = value.replace(/\D/g, '');
+            value = (value / 100).toFixed(2) + '';
+            value = value.replace(".", ",");
+            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            e.target.value = value;
+        });
+
+        // Submit handler to convert back to number format
+        const form = valorInput.closest('form');
+        form.addEventListener('submit', function () {
+            valorInput.value = valorInput.value.replace(/\./g, '').replace(',', '.');
+        });
+    });
+</script>
+
     </div>
 </div>
 @endsection

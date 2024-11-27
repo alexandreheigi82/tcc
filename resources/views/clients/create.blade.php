@@ -84,10 +84,8 @@
                 <button type="submit" class="bg-[#6cb3c3] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">
                     Salvar
                 </button>
-                <button type="button" onclick="window.location.href='{{ route('dashboard') }}'"
-                    class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">
-                    Voltar
-                </button>
+            <!-- Botões de ação -->
+                <button type="button" onclick="window.location.href='{{ route('clients.index') }}'" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Cancelar</button>
             </div>
         </form>
     </div>
@@ -97,7 +95,7 @@
     document.getElementById('cep').addEventListener('blur', function() {
         const cep = this.value.replace(/\D/g, '');
         if (cep) {
-            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            fetch(https://viacep.com.br/ws/${cep}/json/)
                 .then(response => response.json())
                 .then(data => {
                     if (!('erro' in data)) {

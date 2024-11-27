@@ -1,4 +1,4 @@
-@extends('master') 
+@extends('master')
 
 @section('content')
 
@@ -33,7 +33,7 @@
             </div>
             <div class="flex justify-between">
                 <button type="submit" class="bg-[#6cb3c3] text-white font-bold py-2 px-4 rounded hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">Atualizar</button>
-                <button type="button" onclick="window.location.href='{{ route('dashboard') }}'" class="bg-[#f1f1f1] text-[#26535e] font-bold py-2 px-4 rounded hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">Cancelar</button>
+                <button type="button" onclick="window.location.href='{{ route('users.index') }}'" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Cancelar</button>
             </div>
         </form>
     </div>

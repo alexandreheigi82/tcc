@@ -1,5 +1,5 @@
 <?php
-//require __DIR__.'/test.php';
+//require _DIR_.'/test.php';
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;

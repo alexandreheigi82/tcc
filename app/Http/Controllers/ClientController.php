@@ -10,9 +10,11 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('nome')->get();
         return view('clients.index', compact('clients'));
     }
+
+
 
     public function create()
     {

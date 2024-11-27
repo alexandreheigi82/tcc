@@ -11,11 +11,6 @@
         </div>
         @endif
 
-        <div class="mb-6 text-center">
-            <a href="{{ route('clients.create') }}" class="bg-[#6cb3c3] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#547cac]">Cadastrar Novo Cliente</a>
-            <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Voltar</a>
-        </div>
-
         @if ($clients->isEmpty())
         <p class="text-center text-[#26535e]">Nenhum cliente cadastrado.</p>
         @else
@@ -42,6 +37,16 @@
             @endforeach
         </ul>
         @endif
+        <div class="flex justify-between items-center mb-8 mt-6">
+    <a href="{{ route('clients.create') }}" 
+       class="bg-[#6cb3c3] text-white py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">
+       Cadastrar Novo Cliente
+    </a>
+    <a href="{{ route('dashboard') }}" 
+       class="bg-gray-500 text-white py-3 px-6 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400">
+        Voltar
+    </a>
+</div>
     </div>
 </div>
 @endsection

@@ -2,15 +2,11 @@
 
 @section('content')
 
-<div class="bg-[#f5f5f5] min-h-screen p-6">
-    <div class="max-w-4xl mx-auto">
-        <!-- Botão de Criar Novo -->
-        <div class="text-center mb-6">
-            <a href="{{ route('users.create') }}" class="bg-[#6cb3c3] text-white py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">Criar Novo</a>
-            <a href="{{ route('dashboard') }}" class="bg-gray-500 text-white py-3 px-6 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400">Voltar</a>
-        </div>
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
 
-        <hr class="mb-6 border-[#dcdcdc]">
+
+
 
         <!-- Usuários Ativos -->
         <h2 class="text-3xl font-semibold text-center mb-6 text-[#6cb3c3]">Usuários Ativos</h2>
@@ -55,9 +51,24 @@
 
         <!-- Link para ver usuários inativos -->
         <div class="text-center mt-8">
-            <a href="{{ route('users.inactive') }}" class="bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Ver Usuários Inativos</a>
+            <a href="{{ route('users.inactive') }}" class="bg-[#f1f1f1] text-[#26535e] font-bold py-3 px-6 rounded-lg hover:bg-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#ddd]">Ver Usuários Inativos</a>
         </div>
-    </div>
+<!-- Botão de Criar Novo -->
+<div class="flex justify-between items-center mb-6">
+    <a href="{{ route('users.create') }}" 
+       class="bg-[#6cb3c3] text-white py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">
+        Criar Novo
+    </a>
+    <a href="{{ route('dashboard') }}" 
+       class="bg-gray-500 text-white py-3 px-6 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400">
+        Voltar
+    </a>
 </div>
+
+        </div>
+
+    </div>
+    
+
 
 @endsection

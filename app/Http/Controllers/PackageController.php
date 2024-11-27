@@ -65,7 +65,7 @@ class PackageController extends Controller
 
         $package->save();
 
-        return redirect()->route('home')->with('message', 'Pacote criado com sucesso!');
+        return redirect()->route('dashboard')->with('message', 'Pacote criado com sucesso!');
     }
 
 
@@ -144,13 +144,13 @@ class PackageController extends Controller
             $package->situacao = false;
             $package->save();
 
-            return redirect()->route('packages.index')->with('error', 'Pacote possui vendas relacionadas e foi inativado.');
+            return redirect()->route('dashboard')->with('error', 'Pacote possui vendas relacionadas e foi inativado.');
         }
 
         // Se não houver vendas, exclui o pacote
         $package->delete();
 
-        return redirect()->route('packages.index')->with('message', 'Pacote excluído com sucesso!');
+        return redirect()->route('dashboard')->with('message', 'Pacote excluído com sucesso!');
     }
 
 

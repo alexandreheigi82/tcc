@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Lunas Tour</title>
     @vite('resources/css/app.css')
-
     <style>
         body {
             background: linear-gradient(to right, #6cb3c3, #acd4e4);
@@ -139,7 +138,7 @@
 <body>
     <!-- Cabeçalho -->
     <header class="header">
-        <a href="{{ route('home') }}">
+        <a href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
             <nav class="nav-links">
             <a href="{{ route('clients.index') }}">Clientes</a>

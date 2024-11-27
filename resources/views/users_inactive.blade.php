@@ -2,20 +2,15 @@
 
 @section('content')
 
-<div class="bg-[#f5f5f5] min-h-screen p-6">
-    <div class="max-w-4xl mx-auto">
-        <!-- Botão de Voltar -->
-        <div class="text-center mb-6">
-            <a href="{{ route('users.index') }}" class="bg-[#6cb3c3] text-white py-3 px-6 rounded-lg hover:bg-[#547cac] focus:outline-none focus:ring-2 focus:ring-[#547cac]">Voltar</a>
-        </div>
-
-        <hr class="mb-6 border-[#dcdcdc]">
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
 
         <!-- Título Usuários Inativos -->
         <h2 class="text-3xl font-semibold text-center mb-6 text-[#6cb3c3]">Usuários Inativos</h2>
 
         <!-- Lista de Usuários -->
         <ul class="space-y-6">
+            <!-- Botão de Voltar -->
             @foreach ($users as $user)
             <li class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all">
                 <div class="flex flex-wrap justify-between items-center">
@@ -26,14 +21,28 @@
                         <form action="{{ route('users.reactivate', ['user' => $user->id]) }}" method="post" class="inline">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">Ativar</button>
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">Ativar<button>
+
                         </form>
+                        
                     </div>
+
                 </div>
+                
             </li>
             @endforeach
         </ul>
+            <!-- Botões de ação -->
+    <div class="flex justify-between mt-6">
+        <div class="text-center mb-6">
+            <a href="{{ route('users.index') }}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Voltar</a>
+        </div>
     </div>
-</div>
 
-@endsection
+    </div>
+    
+
+</div
+
+
+    @endsection

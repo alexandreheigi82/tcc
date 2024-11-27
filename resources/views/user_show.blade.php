@@ -20,16 +20,13 @@
         </div>
 
         <div class="flex justify-between mb-4">
+        <a href="{{ route('users.index') }}" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-400">Voltar</a>
             <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-400">Editar</a>
             <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST" class="inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-400">Excluir</button>
             </form>
-        </div>
-
-        <div class="text-center">
-            <a href="{{ route('dashboard') }}" class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-500">Voltar ao Painel de Controle</a>
         </div>
     </div>
 </div>
