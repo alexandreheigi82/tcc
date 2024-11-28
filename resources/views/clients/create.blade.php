@@ -95,7 +95,7 @@
     document.getElementById('cep').addEventListener('blur', function() {
         const cep = this.value.replace(/\D/g, '');
         if (cep) {
-            fetch(https://viacep.com.br/ws/${cep}/json/)
+            fetch(`https://viacep.com.br/ws/${cep}/json/`) // Corrigi aspas aqui
                 .then(response => response.json())
                 .then(data => {
                     if (!('erro' in data)) {

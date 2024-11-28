@@ -23,23 +23,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         Log::info('Entrou no método store do UserController');
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'sobrenome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users_tabela',
-            'senha' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/|confirmed',
-            'situacao' => 'boolean',
-        ]);
-
+        $request->validate(['nome' => 'required|string|max:255', 'sobrenome' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users_tabela', 'senha' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/', 'situacao' => 'boolean',]);
         $user = new User();
         $user->nome = $request->input('nome');
         $user->sobrenome = $request->input('sobrenome');
         $user->email = $request->input('email');
         $user->senha = Hash::make($request->input('senha'));
         $user->situacao = $request->has('situacao') ? true : false;
-
         $user->save();
-
         return redirect()->route('users.index')->with('message', 'Usuário criado com sucesso!');
     }
 
@@ -63,7 +54,7 @@ class UserController extends Controller
             'nome' => 'required|string|max:255',
             'sobrenome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users_tabela,email,' . $user->id,
-            'senha' => 'nullable|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/|confirmed',
+            'senha' => 'nullable|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/',
             'situacao' => 'nullable|string',
         ]);
 
@@ -82,7 +73,6 @@ class UserController extends Controller
         return redirect()->route('users.show', ['user' => $user->id])->with('message', 'Usuário atualizado com sucesso!');
     }
 
-
     public function destroy(User $user)
     {
         $user->situacao = false;
@@ -96,7 +86,6 @@ class UserController extends Controller
         $users = User::where('situacao', false)->get(); // Apenas usuários inativos
         return view('users_inactive', ['users' => $users]);
     }
-
 
     public function reactivate($id)
     {
