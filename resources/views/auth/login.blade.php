@@ -166,7 +166,6 @@
                 <div class="relative">
                     <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
                     <!-- Ícone de olho apenas uma vez -->
-                    <i id="togglePassword" class="fas fa-eye eye-icon" onclick="togglePassword()"></i>
                 </div>
             </div>
             <div class="remember-me">
@@ -184,20 +183,6 @@
     </div>
 
     <!-- Script para alternar a visibilidade da senha -->
-    <script>
-        function togglePassword() {
-            const passwordField = document.getElementById("password");
-            const eyeIcon = document.getElementById("togglePassword");
 
-            // Alterar o tipo do campo de senha
-            if (passwordField.type === "password") {
-                passwordField.type = "text";  // Torna o campo visível
-                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");  // Troca o ícone para 'eye-slash'
-            } else {
-                passwordField.type = "password";  // Torna o campo oculto
-                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");  // Troca o ícone para 'eye'
-            }
-        }
-    </script>
 </body>
 </html>

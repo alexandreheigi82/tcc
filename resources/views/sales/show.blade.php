@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('content')
-<div class="bg-black text-white min-h-screen p-6 flex items-center justify-center">
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 class="text-2xl font-bold text-center mb-4 text-blue-400">Relatório da Venda #{{ $sale->id }}</h2>
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <h2 class="text-3xl font-semibold text-center mb-6 text-[#6cb3c3]">Relatório da Venda #{{ $sale->id }}</h2>
 
         <div class="mb-4">
             <p><strong>Cliente:</strong> {{ $sale->client->nome }} {{ $sale->client->sobrenome }}</p>
