@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @vite('resources/css/app.css')
     @yield('styles')
-  
+
     <style>
         body {
             background: linear-gradient(to right, #6cb3c3, #acd4e4);
@@ -138,120 +138,108 @@
     </style>
 </div>
 <body>
-     <!-- Cabeçalho -->
-     <header class="header">
+    <!-- Cabeçalho -->
+    <header class="header">
         <a href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
         </a>
         <nav class="nav-links">
-        <a href="{{ route('dashboard') }}" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Home</a>
+            <a href="{{ route('dashboard') }}" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Home</a>
             <a href="{{ route('clients.index') }}">Clientes</a>
             <a href="{{ route('packages.index') }}">Pacotes</a>
             <a href="{{ route('users.index') }}">Usuários</a>
             <a href="{{ route('sales.index') }}">Vendas</a>
         </nav>
         <div class="user-info" id="user-dropdown-toggle">
-            Usuário: {{ Auth::user()->nome }}
-            <div class="dropdown" id="user-dropdown">
-                <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
-                <!-- <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
-                <a href="{{ route('clients.index') }}">Lista de Clientes</a> 
-                <a href="{{ route('sales.create') }}">Efetuar Venda</a> -->
-                <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
-                <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
-                <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
-                <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
-                <!-- <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
-                <a href="{{ route('users.index') }}">Visualizar Usuários</a>
-                <a href="{{ route('sales.index') }}">Visualizar Vendas</a> -->
-
-                <!-- Botão de Logout estilizado como link -->
-                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">
-                    @csrf
-                    <a href="#"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                        class="text-[#547cac] hover:text-[#26535e] block py-2">
-                        Logout
-                    </a>
-                </form>
-            </div>
-        </div>
+            @if(Auth::check())
+                Usuário: {{ Auth::user()->nome }}
+                <div class="dropdown" id="user-dropdown">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
+                    <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
+                    <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
+                    <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">
+                        @csrf
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    </form>
+                </div>
+            @else
+                <a href="{{ route('login.form') }}">Login</a>
+            @endif
         </div>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="{{ route('home') }}"></a></li>
+            <li><a href="{{ route('dashboard') }}"></a></li>
+            @if(Auth::check())
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"></button>
+                    </form>
+                </li>
+            @else
+                <li><a href="{{ route('login.form') }}">Login</a></li>
+            @endif
+        </ul>
+    </nav>
 
-<nav>
-    <ul>
-        <li><a href="{{ route('home') }}"></a></li>
-        <li><a href="{{ route('dashboard') }}"></a></li>
-        @if (Auth::check())
-            <li>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit"></button>
-                </form>
-            </li>
-        @else
-            <li><a href="{{ route('login.form') }}">Login</a></li>
+    <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-    </ul>
-</nav>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
-<div class="container">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+        <!-- Adicionar mensagens de feedback -->
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
 
-    <!-- Adicionar mensagens de feedback -->
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+        @yield('content')
+    </div>
 
-    @yield('content')
-</div>
-     <!-- Script para dropdown -->
- <script>
+    <!-- Script para dropdown -->
+    <script>
         document.getElementById('user-dropdown-toggle').addEventListener('click', function() {
             const dropdown = document.getElementById('user-dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
     </script>
 
-
-   <!-- Rodapé -->
-   <footer class="bg-[#547cac] py-6 mt-8 text-white text-center">
-    <div class="max-w-3xl mx-auto">
-        <h4 class="text-lg font-bold">Sobre a Lunas Tour</h4>
-        <br>
-        <p class="text-[#acd4e4]">Na Lunas Tour, transformamos viagens em experiências inesquecíveis.
+    <!-- Rodapé -->
+    <footer class="bg-[#547cac] py-6 mt-8 text-white text-center">
+        <div class="max-w-3xl mx-auto">
+            <h4 class="text-lg font-bold">Sobre a Lunas Tour</h4>
             <br>
-            Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
-            Com uma equipe apaixonada e dedicada, oferecemos pacotes de viagens que atendem a todos os estilos, sempre com o compromisso de superar expectativas.
-        </p>
-        <p class="text-[#acd4e4] mt-4">
-            Descubra o mundo com quem entende de viagens. Na Lunas Tour, seu destino é a nossa inspiração!
-        </p>
-    </div>
-</footer>
-
+            <p class="text-[#acd4e4]">Na Lunas Tour, transformamos viagens em experiências inesquecíveis.
+                <br>
+                Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
+                Com uma equipe apaixonada e dedicada, oferecemos pacotes de viagens que atendem a todos os estilos, sempre com o compromisso de superar expectativas.
+            </p>
+            <p class="text-[#acd4e4] mt-4">
+                Descubra o mundo com quem entende de viagens. Na Lunas Tour, seu destino é a nossa inspiração!
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

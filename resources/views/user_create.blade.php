@@ -32,6 +32,9 @@
                 <div class="mb-4">
                     <input type="password" name="senha" placeholder="Senha" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
                 </div>
+                <div class="mb-4">
+                    <input type="password" name="senha_confirmation" placeholder="Confirmar Senha" required class="w-full p-3 rounded-lg bg-[#f1f1f1] text-[#26535e] focus:border-[#6cb3c3] focus:ring-2 focus:ring-[#6cb3c3] border-none">
+                </div>
             </div>
 
             <!-- Opção de checkbox para "Ativo" -->

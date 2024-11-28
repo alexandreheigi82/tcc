@@ -27,7 +27,7 @@ class UserController extends Controller
             'nome' => 'required|string|max:255',
             'sobrenome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users_tabela',
-            'senha' => 'required|string|min:8',
+            'senha' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/|confirmed',
             'situacao' => 'boolean',
         ]);
 
@@ -63,7 +63,7 @@ class UserController extends Controller
             'nome' => 'required|string|max:255',
             'sobrenome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users_tabela,email,' . $user->id,
-            'senha' => 'nullable|string|min:8',
+            'senha' => 'nullable|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&#.]/|confirmed',
             'situacao' => 'nullable|string',
         ]);
 

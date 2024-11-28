@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use App\Models\User;
 
 class ForgotPasswordController extends Controller
@@ -30,6 +29,8 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'O endereço de e-mail não está registrado no nosso sistema.']);
         }
 
+        Log::info('Usuário encontrado', ['user' => $user->email]);
+
         $status = Password::sendResetLink(
             $request->only('email')
         );
@@ -37,7 +38,7 @@ class ForgotPasswordController extends Controller
         Log::info('Status do envio do link', ['status' => $status]);
 
         if ($status === Password::RESET_LINK_SENT) {
-            return back()->with(['status' => 'We have emailed your password reset link.']);
+            return back()->with(['status' => 'Enviamos o link de redefinição de senha para o seu e-mail.']);
         } else {
             return back()->withErrors(['email' => 'Ocorreu um erro ao enviar o link de redefinição de senha.']);
         }

@@ -10,22 +10,22 @@
             <input type="email" id="email" name="email" required>
         </div>
         <div>
-            <label for="password">Nova Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="senha">Nova Senha:</label>
+            <input type="password" id="senha" name="senha" required>
         </div>
         <div>
-            <label for="password_confirmation">Confirmar Senha:</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
+            <label for="senha_confirmation">Confirmar Senha:</label>
+            <input type="password" id="senha_confirmation" name="senha_confirmation" required>
         </div>
         <button type="submit">Redefinir Senha</button>
     </form>
 
     <script>
         function validatePassword() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("password_confirmation").value;
+            var senha = document.getElementById("senha").value;
+            var confirmSenha = document.getElementById("senha_confirmation").value;
 
-            if (password !== confirmPassword) {
+            if (senha !== confirmSenha) {
                 alert("As senhas não coincidem. Por favor, tente novamente.");
                 return false;
             }
