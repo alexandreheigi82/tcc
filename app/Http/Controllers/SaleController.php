@@ -26,6 +26,8 @@ class SaleController extends Controller
             'quantidade' => 'required|integer|min:1',
         ]);
 
+        
+
         $package = Package::findOrFail($request->package_id);
 
         // Verifique se o pacote está ativo

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Lunas Tour</title>
+    <link rel="icon" href="/public/images/lua.png" type="image/png">
     @vite('resources/css/app.css')
     <style>
         body {
@@ -151,16 +152,17 @@
         <div class="user-info" id="user-dropdown-toggle">
             Usuário: {{ Auth::user()->nome }}
             <div class="dropdown" id="user-dropdown">
-                <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
-                <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
-                <a href="{{ route('clients.index') }}">Lista de Clientes</a>
-                <a href="{{ route('sales.create') }}">Efetuar Venda</a>
+            <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
+                <!-- <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
+                <a href="{{ route('clients.index') }}">Lista de Clientes</a> 
+                <a href="{{ route('sales.create') }}">Efetuar Venda</a> -->
                 <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
+                <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
                 <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
                 <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
-                <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
+                <!-- <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
                 <a href="{{ route('users.index') }}">Visualizar Usuários</a>
-                <a href="{{ route('sales.index') }}">Visualizar Vendas</a>
+                <a href="{{ route('sales.index') }}">Visualizar Vendas</a> -->
 
                 <!-- Botão de Logout estilizado como link -->
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">
@@ -178,23 +180,71 @@
 
     <!-- Conteúdo Principal -->
     <div class="flex flex-col md:flex-row space-y-6 md:space-y-0">
-        <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg md:min-h-screen">
-            <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
-            <ul class="space-y-2">
-                <li><a href="{{ route('dashboard', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Internacional']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
-                <li><a href="{{ route('dashboard', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
-            </ul>
-        </aside>
+    <aside class="w-auto md:w-1/5 bg-white p-6 shadow-lg md:min-h-screen border-r border-gray-200">
+        <h3 class="text-[#26535e] font-semibold text-xl mb-6 text-center">Tipos de Passeios</h3>
+        <ul class="space-y-4">
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Todos']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Todos') bg-[#bed8e0] @endif">
+                   Todos
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Tranquilo') bg-[#bed8e0] @endif">
+                   Tranquilo
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Urbano']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Urbano') bg-[#bed8e0] @endif">
+                   Urbano
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Religioso']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Religioso') bg-[#bed8e0] @endif">
+                   Religioso
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Ecoturismo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Ecoturismo') bg-[#bed8e0] @endif">
+                   Ecoturismo
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Internacional']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Internacional') bg-[#bed8e0] @endif">
+                   Internacional
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Gastronômico']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Gastronômico') bg-[#bed8e0] @endif">
+                   Gastronômico
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Esportivo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Esportivo') bg-[#bed8e0] @endif">
+                   Esportivo
+                </a>
+            </li>
+        </ul>
+    </aside>
 
 
         <!-- Conteúdo -->
-        <main class="flex-1 bg-white p-6 shadow-lg">
+        <main class="flex-1 bg-white p-6">
             <h2 class="text-3xl font-bold text-center mb-6 text-[#26535e]">Bem-vindo ao Lunas Tour</h2>
             <section>
                 <h3 class="text-2xl font-bold text-center mb-4 text-[#26535e]">Pacotes Disponíveis</h3>

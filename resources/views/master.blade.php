@@ -138,7 +138,6 @@
     </style>
 </div>
 <body>
-<body>
      <!-- Cabeçalho -->
      <header class="header">
         <a href="{{ route('home') }}">
@@ -154,16 +153,16 @@
             Usuário: {{ Auth::user()->nome }}
             <div class="dropdown" id="user-dropdown">
                 <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
-                <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
-                <a href="{{ route('clients.index') }}">Lista de Clientes</a>
-                <a href="{{ route('sales.create') }}">Efetuar Venda</a>
+                <!-- <a href="{{ route('clients.create') }}">Cadastrar Cliente</a>
+                <a href="{{ route('clients.index') }}">Lista de Clientes</a> 
+                <a href="{{ route('sales.create') }}">Efetuar Venda</a> -->
                 <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
                 <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
                 <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
                 <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
-                <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
+                <!-- <a href="{{ route('users.create') }}">Cadastrar Novo Usuário</a>
                 <a href="{{ route('users.index') }}">Visualizar Usuários</a>
-                <a href="{{ route('sales.index') }}">Visualizar Vendas</a>
+                <a href="{{ route('sales.index') }}">Visualizar Vendas</a> -->
 
                 <!-- Botão de Logout estilizado como link -->
                 <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">

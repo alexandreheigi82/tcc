@@ -172,50 +172,131 @@
 
     <!-- Conteúdo Principal -->
     <div class="flex flex-col md:flex-row space-y-6 md:space-y-0">
-        <aside class="w-full md:w-1/4 bg-white p-6 shadow-lg md:min-h-screen">
-            <h3 class="text-[#26535e] font-semibold text-xl mb-4">Tipos de Passeios</h3>
-            <ul class="space-y-2">
-                <li><a href="{{ route('home', ['tipo' => 'Todos']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Todos</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Tranquilo</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Urbano']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Urbano</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Religioso']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Religioso</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Ecoturismo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Ecoturismo</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Internacional']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Internacional</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Gastronômico']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Gastronômico</a></li>
-                <li><a href="{{ route('home', ['tipo' => 'Esportivo']) }}" class="text-[#26535e] px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md">Esportivo</a></li>
-            </ul>
-        </aside>
+    <aside class="w-auto md:w-1/5 bg-white p-6 shadow-lg md:min-h-screen border-r border-gray-200">
+        <h3 class="text-[#26535e] font-semibold text-xl mb-6 text-center">Tipos de Passeios</h3>
+        <ul class="space-y-4">
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Todos']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Todos') bg-[#bed8e0] @endif">
+                   Todos
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Tranquilo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Tranquilo') bg-[#bed8e0] @endif">
+                   Tranquilo
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Urbano']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Urbano') bg-[#bed8e0] @endif">
+                   Urbano
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Religioso']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Religioso') bg-[#bed8e0] @endif">
+                   Religioso
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Ecoturismo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Ecoturismo') bg-[#bed8e0] @endif">
+                   Ecoturismo
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Internacional']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Internacional') bg-[#bed8e0] @endif">
+                   Internacional
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Gastronômico']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Gastronômico') bg-[#bed8e0] @endif">
+                   Gastronômico
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('home', ['tipo' => 'Esportivo']) }}" 
+                   class="text-[#26535e] font-semibold text-lg px-4 py-2 hover:bg-[#bed8e0] cursor-pointer rounded-md text-left 
+                   @if(request()->get('tipo') == 'Esportivo') bg-[#bed8e0] @endif">
+                   Esportivo
+                </a>
+            </li>
+        </ul>
+    </aside>
 
-        <!-- Pacotes Disponíveis -->
-        <main class="flex-1 bg-white p-6 shadow-lg">
-            <h2 class="text-3xl font-bold text-center mb-6 text-[#26535e]">Bem-vindo ao Lunas Tour</h2>
-            <section>
-                <h3 class="text-2xl font-bold text-center mb-4 text-[#26535e]">Pacotes Disponíveis</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @if ($packages->isNotEmpty())
-                    @foreach ($packages as $package)
-                    @if ($package->situacao)
-                    <div class="pacote-card bg-white p-4 rounded-lg shadow-lg border border-[#6cb3c3]">
-                        <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
-                        <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
-                        <p class="mb-2 text-[#26535e]">Valor: R$ {{ number_format($package->valor, 2, ',', '.') }}</p>
-                        <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
-                        @if ($package->imagem)
-                        <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
-                        @endif
-                        <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
-                        @if (Auth::check())
-
-                        @endif
-                    </div>
+    <main class="flex-1 bg-white p-6">
+        <h2 class="text-3xl font-bold text-center mb-6 text-[#26535e]">Bem-vindo ao Lunas Tour</h2>
+        <section>
+            <h3 class="text-2xl font-bold text-center mb-4 text-[#26535e]">Pacotes Disponíveis</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @if ($packages->isNotEmpty())
+                @foreach ($packages as $package)
+                @if ($package->situacao)
+                <div class="pacote-card bg-white p-4 rounded-lg border border-[#6cb3c3]">
+                    <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
+                    <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
+                    <p class="mb-2 text-[#26535e]">Valor: R$ {{ number_format($package->valor, 2, ',', '.') }}</p>
+                    <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
+                    @if ($package->imagem)
+                    <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
                     @endif
-                    @endforeach
-                    @else
-                    <p class="text-center col-span-3 text-[#26535e]">Nenhum pacote disponível.</p>
+                    <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                    @if (Auth::check())
+
                     @endif
                 </div>
-            </section>
-        </main>
+                @endif
+                @endforeach
+                @else
+                <p class="text-center col-span-3 text-[#26535e]">Nenhum pacote disponível.</p>
+                @endif
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<!-- Pacotes Disponíveis -->
+<!-- <main class="flex-1 bg-white p-12">
+    <h2 class="text-3xl font-bold text-center mb-6 text-[#26535e]">Bem-vindo ao Lunas Tour</h2>
+    <section>
+        <h3 class="text-2xl font-bold text-center mb-4 text-[#26535e]">Pacotes Disponíveis</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @if ($packages->isNotEmpty())
+            @foreach ($packages as $package)
+            @if ($package->situacao)
+            <div class="pacote-card bg-white p-4 rounded-lg border border-[#6cb3c3]">
+                <h4 class="text-xl font-bold mb-2 text-[#26535e]">{{ $package->titulo }}</h4>
+                <p class="mb-2 text-[#26535e]">{{ $package->descricao }}</p>
+                <p class="mb-2 text-[#26535e]">Valor: R$ {{ number_format($package->valor, 2, ',', '.') }}</p>
+                <p class="mb-2 text-[#26535e]">Vagas: {{ $package->vagas }}</p>
+                @if ($package->imagem)
+                <img src="{{ asset('storage/' . $package->imagem) }}" alt="{{ $package->titulo }}" class="mb-2 w-full h-48 object-cover rounded">
+                @endif
+                <a href="{{ $package->link }}" class="text-[#547cac] hover:underline mb-2 block">Link: Fale conosco</a>
+                @if (Auth::check())
+
+                @endif
+            </div>
+            @endif
+            @endforeach
+            @else
+            <p class="text-center col-span-3 text-[#26535e]">Nenhum pacote disponível.</p>
+            @endif
+        </div>
+    </section>
+</main> -->
+
     </div>
     </div>
 
