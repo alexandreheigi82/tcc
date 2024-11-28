@@ -140,10 +140,11 @@
 <body>
      <!-- Cabeçalho -->
      <header class="header">
-        <a href="{{ route('home') }}">
+        <a href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
         </a>
         <nav class="nav-links">
+        <a href="{{ route('dashboard') }}" class="text-[#acd4e4] px-4 py-2 rounded hover:bg-[#547cac]">Home</a>
             <a href="{{ route('clients.index') }}">Clientes</a>
             <a href="{{ route('packages.index') }}">Pacotes</a>
             <a href="{{ route('users.index') }}">Usuários</a>

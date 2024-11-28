@@ -11,21 +11,106 @@
 
     <style>
         body {
-            background: linear-gradient(to right, #7bc6c9, #a8e6cf); /* Gradiente suave */
+            background: linear-gradient(to right, #6cb3c3, #acd4e4);
             font-family: 'Arial', sans-serif;
+            color: #26535e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .container {
+            background-color: white;
+            padding: 2rem; /* Diminuído para reduzir a altura */
+            border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px; /* Largura aumentada */
+            text-align: center;
+        }
+
+        .logo {
+            width: 220px; /* Aumentado para 220px */
+            height: 220px; /* Aumentado para 220px */
+            margin-bottom: 2rem; /* Diminuído o espaçamento */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #547cac;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h2 {
+            font-size: 2.25rem; /* Ajustado para um tamanho intermediário */
+            font-weight: bold;
+            color: #26535e;
+            margin-bottom: 1.5rem; /* Diminuído o espaçamento */
         }
 
         input:focus {
-            border-color: #4a90e2;
+            border-color: #547cac;
             outline: none;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1.125rem;
+            color: #26535e;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+        .button-enter {
+            background-color: #547cac;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 1.5rem; /* Diminuído o espaçamento */
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .button-enter:hover {
             background-color: #3e8e33;
+        }
+
+        .forgot-password {
+            color: #547cac;
+            text-decoration: underline;
+            font-size: 1rem;
+            margin-top: 1.25rem;
+            display: block;
+        }
+
+        .remember-me {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
         }
 
         .error-message {
@@ -34,90 +119,85 @@
             font-size: 0.875rem;
         }
 
-        .button-back,
-        .button-enter {
-            transition: background-color 0.3s ease;
+        .links {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #6a6a6a;
         }
 
-        .button-back:hover {
-            background-color: #6b7f7c;
+        .links a {
+            color: #547cac;
+            text-decoration: underline;
         }
 
-        .button-enter:hover {
-            background-color: #3e8e33;
+        .links a:hover {
+            color: #26535e;
         }
     </style>
 </head>
-<body class="font-sans flex justify-center items-center h-screen m-2">
-    <!-- Contêiner de login -->
-    <div class="bg-[#6cb3c3] p-8 rounded-lg shadow-xl w-full max-w-md mx-auto">
-        <div class="container text-center bg-white p-6 rounded-md w-full">
-            <!-- Logo -->
-            <div class="w-32 h-32 mx-auto mb-6 rounded-full border-4 border-[#26535e] overflow-hidden">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-full h-full object-cover transform scale-125" />
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Lunas Tour">
+        </div>
+
+        <!-- Título -->
+        <h2>Login</h2>
+
+        <!-- Exibir mensagem de erro de autenticação -->
+        @if ($errors->has('email') || $errors->has('password'))
+            <div class="error-message">
+                <ul>
+                    <li>Usuário ou senha incorretos</li>
+                </ul>
             </div>
+        @endif
 
-            <!-- Título -->
-            <h2 class="text-3xl font-semibold text-[#26535e] mb-6">Login</h2>
-
-            <!-- Exibir mensagens de erro -->
-            <div id="errorContainer" class="alert alert-danger mb-4 text-red-500" style="display: none;">
-                <ul id="errorList"></ul>
+        <!-- Formulário de login -->
+        <form method="POST" action="{{ route('login') }}" id="loginForm" class="text-left">
+            @csrf
+            <div class="mb-4">
+                <label for="email" class="font-bold text-[#333]">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
             </div>
-
-            <!-- Formulário de login -->
-            <form id="loginForm" class="text-left">
-                @csrf
-                <div class="mb-5">
-                    <label for="email" class="font-bold text-[#333]">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required class="w-full p-3 mt-2 border border-[#dcdcdc] rounded-md text-lg shadow-sm focus:border-[#26535e]" />
+            <div class="mb-4">
+                <label for="password" class="font-bold text-[#333]">Senha:</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
+                    <!-- Ícone de olho -->
+                    <i id="togglePassword" class="fas fa-eye eye-icon" onclick="togglePassword()"></i>
                 </div>
-                <div class="mb-5">
-                    <label for="password" class="font-bold text-[#333]">Senha:</label>
-                    <div class="relative input-container">
-                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required class="w-full p-3 mt-2 pr-10 border border-[#dcdcdc] rounded-md text-lg shadow-sm focus:border-[#26535e]" />
-                        <!-- Ícone de olho para alternar a visibilidade da senha -->
-                        <i id="togglePassword" class="fas fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer opacity-60"></i>
-                    </div>
-                </div>
-                <div class="remember-me flex items-center mb-4 text-sm text-[#333]">
-                    <input type="checkbox" id="remember" name="remember" class="mr-2" />
-                    <label for="remember">Lembrar-me</label>
-                </div>
-                <a href="{{ route('password.request') }}" class="forgot-password text-[#26535e] hover:underline text-sm">Esqueci minha senha</a>
-                <div class="button-container flex justify-between mt-5">
-                    <button type="button" onclick="window.history.back();" class="button-back bg-[#6b7f7c] px-5 py-2 rounded-md text-white font-semibold">Voltar</button>
-                    <button type="submit" class="button-enter bg-[#2f9e44] px-5 py-2 rounded-md text-white font-semibold transition-colors duration-200">Entrar</button>
-                </div>
-            </form>
-
-            <!-- Links para Política de Privacidade e Termos de Uso -->
-            <div class="mt-5 text-sm text-[#333]">
-                <a href="/privacy-policy" class="hover:underline">Política de Privacidade</a> |
-                <a href="/terms-of-service" class="hover:underline">Termos de Uso</a>
             </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember" />
+                <label for="remember">Lembrar-me</label>
+            </div>
+            <a href="{{ route('password.request') }}" class="forgot-password">Esqueci minha senha</a>
+            <button type="submit" class="button-enter">Entrar</button>
+        </form>
+
+        <div class="links">
+            <a href="/privacy-policy" class="hover:underline">Política de Privacidade</a> |
+            <a href="/terms-of-service" class="hover:underline">Termos de Uso</a>
         </div>
     </div>
 
     <!-- Script para alternar a visibilidade da senha -->
     <script>
-        // Função para alternar entre mostrar e ocultar senha
         function togglePassword() {
             const passwordField = document.getElementById("password");
             const eyeIcon = document.getElementById("togglePassword");
 
-            // Alterna entre texto e senha
+            // Alterar o tipo do campo de senha
             if (passwordField.type === "password") {
-                passwordField.type = "text";
-                eyeIcon.classList.replace("fa-eye", "fa-eye-slash"); // Ícone para "ocultar"
+                passwordField.type = "text";  // Torna o campo visível
+                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");  // Troca o ícone para 'eye-slash'
             } else {
-                passwordField.type = "password";
-                eyeIcon.classList.replace("fa-eye-slash", "fa-eye"); // Ícone para "mostrar"
+                passwordField.type = "password";  // Torna o campo oculto
+                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");  // Troca o ícone para 'eye'
             }
         }
-
-        // Adicionando o evento de clique para alternar o ícone
-        document.getElementById("togglePassword").addEventListener("click", togglePassword);
     </script>
 </body>
 </html>
