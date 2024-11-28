@@ -134,6 +134,53 @@
         transform: scale(1.02);
         transition: transform 0.3s;
     }
+    footer {
+    background-color: #547cac;
+    color: white;
+    padding: 2rem 1rem; /* Reduzido de 4rem para 2rem */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+footer h2, footer h4 {
+    font-weight: 600;
+    margin-bottom: 1rem; /* Reduzido de 1.5rem para 1rem */
+}
+
+footer p {
+    margin-bottom: 0.5rem; /* Reduzido de 0.75rem para 0.5rem */
+    font-size: 0.9rem; /* Um pouco menor */
+    line-height: 1.4; /* Reduzido para diminuir altura */
+    color: #dbe7f2;
+}
+
+footer .sobre, footer .contatos {
+    max-width: 600px;
+    margin-bottom: 1.5rem; /* Reduzido de 2rem para 1.5rem */
+    padding: 0.5rem 0; /* Reduzido de 1rem para 0.5rem */
+}
+
+footer .sobre {
+    border-top: 1px solid #dbe7f2;
+    padding-top: 1.5rem; /* Reduzido de 2rem para 1.5rem */
+}
+
+footer a {
+    text-decoration: none;
+    color: #acd4e4;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: white;
+}
+
+
 </style>
 
 <body>
@@ -157,7 +204,7 @@
         </header>
     </div>
 
-    <!-- Botão de Login 
+    <!-- Botão de Login
                 <div class="flex-shrink-0">
                     @if (Auth::check())
                     <form action="{{ route('logout') }}" method="POST">
@@ -303,28 +350,27 @@
 
 
 </body>
-<footer class="bg-[#547cac] py-6 mt-8 text-white text-center">
+<footer>
     <!-- Seção de Contato -->
-    <div id="contatos" class="ax-w-3xl mx-auto contatos">
-        <h2 class="text-2xl font-bold mb-4">Entre em Contato</h2>
-        <p>E-mail: contato@lunastour.com</p>
-        <p>Telefone: (11) 1234-5678</p>
+    <div id="contatos" class="contatos">
+        <h2>Entre em Contato</h2>
+        <p>E-mail: <a href="mailto:contato@lunastour.com">contato@lunastour.com</a></p>
+        <p>Telefone: <a href="tel:+551112345678">(11) 1234-5678</a></p>
         <p>Endereço: Rua das Viagens, 123 - São Paulo, SP</p>
     </div>
 
     <!-- Seção Sobre -->
-    <div id="sobre" class="ax-w-3xl mx-auto sobre mt-6">
-        <h4 class="text-lg font-bold">Sobre a Lunas Tour</h4>
-        <br>
-        <p class="text-[#acd4e4]">Na Lunas Tour, transformamos viagens em experiências inesquecíveis.
-            <br>
-            Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
-            Com uma equipe apaixonada e dedicada, oferecemos pacotes de viagens que atendem a todos os estilos, sempre com o compromisso de superar expectativas.
+    <div id="sobre" class="sobre">
+        <h4>Sobre a Lunas Tour</h4>
+        <p>
+            Na Lunas Tour, transformamos viagens em experiências inesquecíveis. Somos especialistas em criar roteiros personalizados que combinam conforto, aventura e momentos únicos.
         </p>
-        <p class="text-[#acd4e4] mt-4">
+        <p>
             Descubra o mundo com quem entende de viagens. Na Lunas Tour, seu destino é a nossa inspiração!
         </p>
     </div>
 </footer>
+
+
 
 </html>
