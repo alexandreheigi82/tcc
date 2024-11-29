@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,9 +136,9 @@
             transform: scale(1.02);
             transition: transform 0.3s;
         }
-        
     </style>
-</div>
+    </div>
+
 <body>
     <!-- Cabeçalho -->
     <header class="header">
@@ -152,19 +153,19 @@
         </nav>
         <div class="user-info" id="user-dropdown-toggle">
             @if(Auth::check())
-                Usuário: {{ Auth::user()->nome }}
-                <div class="dropdown" id="user-dropdown">
-                    <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
-                    <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
-                    <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
-                    <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
-                    <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">
-                        @csrf
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                    </form>
-                </div>
+            Usuário: {{ Auth::user()->nome }}
+            <div class="dropdown" id="user-dropdown">
+                <a href="{{ route('users.edit', Auth::user()->id) }}">Alterar Login</a>
+                <a href="{{ route('packages.create') }}">Criar Pacote de Turismo</a>
+                <a href="{{ route('packages.inactive') }}">Pacotes Inativos</a>
+                <a href="{{ route('packages.index') }}">Ver Pacotes de Turismo</a>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form" class="inline-block">
+                    @csrf
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                </form>
+            </div>
             @else
-                <a href="{{ route('login.form') }}">Login</a>
+            <a href="{{ route('login.form') }}">Login</a>
             @endif
         </div>
     </header>
@@ -174,45 +175,45 @@
             <li><a href="{{ route('home') }}"></a></li>
             <li><a href="{{ route('dashboard') }}"></a></li>
             @if(Auth::check())
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit"></button>
-                    </form>
-                </li>
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit"></button>
+                </form>
+            </li>
             @else
-                <li><a href="{{ route('login.form') }}">Login</a></li>
+            <li><a href="{{ route('login.form') }}">Login</a></li>
             @endif
         </ul>
     </nav>
 
     <div class="container">
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
         @endif
 
         <!-- Adicionar mensagens de feedback -->
         @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
         @endif
 
         @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
         @endif
 
         @yield('content')
@@ -223,6 +224,13 @@
         document.getElementById('user-dropdown-toggle').addEventListener('click', function() {
             const dropdown = document.getElementById('user-dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }); // Script para encerrar sessão ao fechar aba ou janela do navegador
+        window.addEventListener('beforeunload', function (e) {
+            const url = "{{ route('logout') }}";
+            const token = "{{ csrf_token() }}";
+            const data = new URLSearchParams();
+            data.append('_token', token);
+            navigator.sendBeacon(url, data);
         });
     </script>
 
@@ -242,4 +250,5 @@
         </div>
     </footer>
 </body>
+
 </html>
